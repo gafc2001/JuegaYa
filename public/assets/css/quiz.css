@@ -1,0 +1,40 @@
+
+.header-quiz{
+    margin: 3rem 0;
+   
+}
+.header-desc{
+    color: var(--grey-color);
+    font-size: var(--fs-text);
+}
+body{
+    counter-reset: section;  
+}
+.answers{
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    counter-reset: enumarate;
+    font-size: var(--fs-small);
+}
+.answer{
+    width: 100%;
+    padding: 1rem 2rem;
+    border-radius:2rem;
+    border: 1px solid var(--blue-color);
+    margin-bottom: 2rem;
+    padding-left: 4rem;
+    counter-increment: enumarate;
+}
+.answer::before{
+    content: counter(enumarate) ".";
+    display: inline-block;
+    width: 1rem;
+    height: 100%;
+    margin-right: 1rem;
+}
+.answer.selected{
+    background-image: var(--gradient-orange-color);
+    border: unset;
+}

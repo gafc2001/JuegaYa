@@ -1,0 +1,49 @@
+.profile-header{
+    margin-top: 4rem;
+    margin-bottom:4rem;
+}
+.img-container{
+    position: relative;
+}
+.img-container img{
+    border-radius: 8rem;
+}
+.profile-edit{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    stroke: var(--white-color);
+    background-image: var(--gradient-orange-color );
+    border-radius:5rem;
+    padding:.5rem 0.65rem;
+    border: 3px solid var(--bg-primary);
+}
+.btn-profile .btn{
+    width: 10rem;
+    padding: 1rem;
+    font-size: var(--fs-small);
+}
+.profile-information{
+    margin-bottom: 10rem;
+}
+.profile-item{
+    display: flex;
+    margin-bottom: 2rem;
+}
+.profile-icon{
+    border-radius:4rem;
+    background-color: var(--bg-secondary);
+    padding: 1.4rem 1.5rem;
+    margin-right: 2rem;
+}
+.profile-icon path,.profile-icon circle{
+    stroke: var(--white-color);
+}
+.profile-values{
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--bg-secondary);
+    width: 100%
+}
+.profile-arrow{
+    stroke: var(--white-color);
+}

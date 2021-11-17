@@ -1,0 +1,20 @@
+.navbar{
+    background-color: var(--bg-secondary);
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px solid var(--grey-color);
+}
+.navbar .navbar-list{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 0;
+}
+.navbar-list .nav-item{
+    padding: 1rem;
+    
+}
+.navbar-list .nav-item path{
+    fill: var(--white-color);
+}
