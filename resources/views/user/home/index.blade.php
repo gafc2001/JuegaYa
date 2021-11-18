@@ -174,9 +174,9 @@
         </div>
 
     </div>
-    <div class="btn btn-primary btn-absolute">
+    <a href="{{route('match.create')}}" class="btn btn-primary btn-absolute">
     <i class="fas fa-plus"></i> 
-    </div>
+    </a>
 </main>
 
 @endsection

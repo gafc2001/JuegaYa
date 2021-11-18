@@ -10,13 +10,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/general.css')}}">
+    @if(!Route::current()->getName() == 'login')
     <link rel="stylesheet" href="{{asset('assets/css/navbar.css')}}">
+    @endif
     @yield('css')
 </head>
 
 <body>
     @yield('content')
 
+    @if(!Route::current()->getName() == 'login')
     <nav class="navbar navbar-fixed-bottom">
         <ul class="navbar-list">
             <li class="nav-item">
@@ -42,6 +45,7 @@
             </li>
         </ul>
     </nav>
+    @endif
 
     @yield('js')
     <script src="https://kit.fontawesome.com/0dadf959e1.js" crossorigin="anonymous"></script>

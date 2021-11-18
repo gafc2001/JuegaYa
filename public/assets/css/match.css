@@ -86,3 +86,11 @@
     background-color: var(--blue-color);
 }
 
+.map-container{
+    display: none;
+    overflow: hidden;
+}
+.map-container iframe{
+    transition: 1s;
+    transform: translateY(-100%);
+}

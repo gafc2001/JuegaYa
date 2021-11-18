@@ -18,6 +18,7 @@ class CreateMatchesTable extends Migration
             $table->unsignedBigInteger("host_user_id");
             $table->unsignedBigInteger("match_status_id");
             $table->unsignedBigInteger("sport_id");
+            $table->unsignedBigInteger("district_id");
             $table->datetime("date_time");
             $table->integer("max_participants");
             $table->string("latitude");
@@ -26,6 +27,7 @@ class CreateMatchesTable extends Migration
             $table->foreign("host_user_id")->references("id")->on("users");
             $table->foreign("match_status_id")->references("id")->on("match_statuses");
             $table->foreign("sport_id")->references("id")->on("sports");
+            $table->foreign("district_id")->references("id")->on("districts");
             
             $table->timestamps();
         });

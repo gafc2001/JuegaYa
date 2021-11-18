@@ -17,6 +17,13 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+    public static $credentials = [
+        'email' => ['required','email'],
+        'password' => ['required'],
+    ];
+    public static $signin_error = [
+        'message' => 'Tu correo o contraseña son incorrectos'
+    ];
     protected $fillable = [
         'name',
         'email',

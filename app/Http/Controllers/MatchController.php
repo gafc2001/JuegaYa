@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\District;
 
 class MatchController extends Controller
 {
@@ -23,7 +24,8 @@ class MatchController extends Controller
      */
     public function create()
     {
-        return view('user.match.create');
+        $districts = District::pluck('district','id');
+        return view('user.match.create',compact('districts'));
     }
 
     /**
@@ -34,6 +36,7 @@ class MatchController extends Controller
      */
     public function store(Request $request)
     {
+        
         return dd($request->all());
     }
 
