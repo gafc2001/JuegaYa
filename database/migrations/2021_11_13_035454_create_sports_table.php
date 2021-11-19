@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Sport;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,6 +19,10 @@ class CreateSportsTable extends Migration
             $table->string("sport");
             $table->timestamps();
         });
+        Sport::create(['sport' => 'Futbol']);
+        Sport::create(['sport' => 'Boleyball']);
+        Sport::create(['sport' => 'Basketball']);
+        Sport::create(['sport' => 'Tenis']);
     }
 
     /**

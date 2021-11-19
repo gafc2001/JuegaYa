@@ -17,6 +17,7 @@ class CreateParticipantsTable extends Migration
             $table->id();
             $table->unsignedBigInteger("user_id");
             $table->unsignedBigInteger("match_id");
+            $table->enum("status",["PENDIENDTE","ACEPTADO","RECHAZADO"]);
             $table->foreign("user_id")->references("id")->on("users");
             $table->foreign("match_id")->references("id")->on("matches");
             $table->timestamps();

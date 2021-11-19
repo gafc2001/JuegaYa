@@ -15,6 +15,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("user_id")->unique();
             $table->string("first_name");
             $table->string("last_name");
             $table->integer("age");
@@ -24,6 +25,7 @@ class CreateProfilesTable extends Migration
             // $table->string("preferred_position");
             $table->string("profile_picture");
             $table->enum("gender",["Hombre","Mujer","Prefiero no decirlo"]);
+            $table->foreign("user_id")->references("id")->on("users");
             $table->timestamps();
         });
     }

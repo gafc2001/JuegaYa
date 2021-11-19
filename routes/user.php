@@ -13,4 +13,4 @@ Route::get('/quiz',[UserController::class,'quiz'])->name('quiz');
 
 
 Route::resource('/match',MatchController::class)->middleware('auth');
-Route::resource('/profile',ProfileController::class)->middleware('auth');
+Route::resource('/profile',ProfileController::class);

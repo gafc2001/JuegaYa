@@ -54,7 +54,7 @@
                     <span class="input-icon">
                         <i class="fas fa-clock"></i>
                     </span>
-                    <input type="text" placeholder="Tiempo jugando" class="input" name="time_playing" id="time_playing" required>
+                    <input type="date" placeholder="Tiempo jugando" class="input" name="time_playing" id="time_playing" required>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                 <input type="file" name="profile_picture" id="profile_picture">
             </div>
             <div class="current-picture">
-                <img src="{{asset('assets/img/profile/default-profile.png')}}" alt="profile" id="current-img-picture">
+                <img src="{{asset('assets/img/profile/default-profile.png')}}" alt="profile" id="current-img-picture" required>
             </div>
         </div>
         <div class="btn-container column">

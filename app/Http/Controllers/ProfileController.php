@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -12,6 +15,10 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('profile')->only('index');
+    }
     public function index()
     {
         return view('user.profile.index');
@@ -35,10 +42,23 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+        // return dd($request->all());
+        
         $file = $request->file('profile_picture');
-        $fileName = $file->hashName();
+        $file_name = $file->hashName();
         $upload_success = Storage::disk('public')->put('img/profile',$file);
-        return dd($fileName);
+        $profile = Profile::create([
+            'user_id' => Auth::id(),
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'age' => $request->age,
+            'high' => $request->high,
+            'time_playing' => $request->time_playing,
+            'favorite_sport' => $request->favorite_sport,
+            'gender' => $request->gender,
+            'profile_picture' => $file_name,
+        ]);
+        return view('user.profile.index');
     }
 
     /**
