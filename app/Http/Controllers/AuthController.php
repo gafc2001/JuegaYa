@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -19,8 +20,8 @@ class AuthController extends Controller
     public function signin(Request $request){
         $credentials = $request->validate(User::$credentials);
         if(Auth::attempt($credentials)){
-            $request->session->regenerate();
-            return redirect()->intended();
+            // $request->session->regenerate();
+            return redirect(RouteServiceProvider::HOME);
         }
         return back()->withErrors(User::$signin_error);
     }

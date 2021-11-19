@@ -1,35 +1,40 @@
 window.addEventListener("DOMContentLoaded",function(){
     const formSignIn = document.getElementById("form-signin");
+    const formSignUp = document.getElementById("form-signup");
     const forms = document.getElementsByClassName("form");
     const signIn = document.getElementById("sign-in");
-    const closeButton = document.getElementById("close-form");
+    const closeButtons = document.getElementsByClassName("close-form");
     const passwords = document.getElementsByClassName("password");
-    const inputs = document.getElementsByClassName("input");
-    const inputContainers = document.getElementsByClassName("input-container");
-    const submitButtons = document.getElementsByClassName("btn-submit");
     const showPasswordButtons = document.getElementsByClassName("show-password");
     
 
     let isPasswordVisible = false;
-    let isFormOpen = formSignIn.classList.contains('active')?true:false;
-
+    let isSignInFormOpen = formSignIn.classList.contains('active')?true:false;
+    let isSignUpFormOpen = false;
     const openForm = () => {
         document.body.classList.add("active");
         formSignIn.classList.add("active");
-        setTimeout(() => {isFormOpen = true},1100);
+        setTimeout(()=>{changeFormState(true)},1100);
+    }
+    
+    const changeFormState = (state) =>{
+        isSignInFormOpen = state;
+        isSignUpFormOpen = state;
+        console.info(isSignInFormOpen,isSignUpFormOpen);
     }
     const closeForm = () => {
         formSignIn.classList.remove("active");
+        formSignUp.classList.remove("active");
         document.body.classList.remove("active");
-        setTimeout(() => {isFormOpen = false},1100);
+        setTimeout(() => {changeFormState(false)},1100);
     }
     const closeFormFromBody = (e) => {
-        
-        let isFormClicked = formSignIn.contains(e.target);
+        let isFormClicked = formSignIn.contains(e.target) || formSignUp.contains(e.target);
         if (!isFormClicked) {
-            if(isFormOpen) {
+            if(isSignInFormOpen || isSignUpFormOpen) {
                 closeForm();
             }
+
         }
     }
     const showPassword = () =>{
@@ -38,43 +43,15 @@ window.addEventListener("DOMContentLoaded",function(){
         }
         isPasswordVisible = !isPasswordVisible;
     }
-    const validateForm = () => {
-        for(input of inputs){
-            let value = input.value.trim();
-            if(value.length === 0) {
-                for(inputContainer of inputContainers){
-                    inputContainer.classList.add("invalid-input");
-                }
-                for(submitButton of submitButtons){
-                    submitButton.classList.add("btn-disabled");
-                    submitButton.setAttribute("disabled",'true');
-                }
-            }else{
-                for(inputContainer of inputContainers){
-                    inputContainer.classList.remove("invalid-input");
-                }
-                for(submitButton of submitButtons){
-                    submitButton.classList.remove("btn-disabled");
-                    submitButton.removeAttribute("disabled");
-                }
-            }
-        }
-    }
+    
 
 
     signIn.addEventListener("click",openForm);
-    closeButton.addEventListener("click",closeForm);
     document.addEventListener("click",closeFormFromBody);
     
-    for(form of forms){
-        console.log(form);
-        form.addEventListener("submit",validateForm);
+    for(closeButton of closeButtons){
+        closeButton.addEventListener("click",closeForm);
     }
-    
-    for(input of inputs){
-        input.addEventListener("input",validateForm);
-    }
-
     for(showPasswordButton of showPasswordButtons){
         showPasswordButton.addEventListener("click",showPassword);
     }

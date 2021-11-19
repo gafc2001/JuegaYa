@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\District;
-use App\Models\MatchGame;
-use App\Models\MatchStatus;
-use App\Models\Sport;
-use App\Providers\RouteServiceProvider;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
-class MatchController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +14,7 @@ class MatchController extends Controller
      */
     public function index()
     {
-        return view('user.match.index');
+        return view('user.profile.index');
     }
 
     /**
@@ -30,9 +24,7 @@ class MatchController extends Controller
      */
     public function create()
     {
-        $districts = District::pluck('district','id');
-        $sports = Sport::pluck('sport','id');
-        return view('user.match.create',compact('districts','sports'));
+        return view('user.profile.create');
     }
 
     /**
@@ -43,20 +35,10 @@ class MatchController extends Controller
      */
     public function store(Request $request)
     {
-        MatchGame::insert([
-            'host_user_id' => Auth::id(),
-            'match_status_id' => MatchStatus::where('status','Previa')->first()->id,
-            'sport_id' => $request->sport_id,
-            'district_id' => $request->district_id,
-            'date_time' => date('Y-m-d H:i:s',strtotime($request->date.$request->time)),
-            'max_participants' => $request->district_id,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-        
-        return redirect(RouteServiceProvider::HOME);
+        $file = $request->file('profile_picture');
+        $fileName = $file->hashName();
+        $upload_success = Storage::disk('public')->put('img/profile',$file);
+        return dd($fileName);
     }
 
     /**
@@ -67,8 +49,7 @@ class MatchController extends Controller
      */
     public function show($id)
     {
-        $match = MatchGame::find($id);
-        return view('user.match.show',compact('match'));
+        //
     }
 
     /**

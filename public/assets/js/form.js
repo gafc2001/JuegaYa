@@ -3,7 +3,8 @@ window.addEventListener("DOMContentLoaded", function () {
     const btnMap = document.getElementById("btn-map");
     const latitudeValue = document.getElementById("latitude");
     const longitudeValue = document.getElementById("longitude");
-    const select = document.getElementById("select");
+    const sport = document.getElementById("sport");
+    const district = document.getElementById("district");
     const mapContainer = document.getElementById("map-container");
     const map = document.getElementById("map"); 
     
@@ -42,5 +43,6 @@ window.addEventListener("DOMContentLoaded", function () {
             },1001);
         },1000);
     }
-    NiceSelect.bind(select, { searchable: true });
+    NiceSelect.bind(sport, { searchable: true });
+    NiceSelect.bind(district, { searchable: true });
 });

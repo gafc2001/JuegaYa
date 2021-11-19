@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MatchGame;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index(){
+
         return redirect(RouteServiceProvider::HOME);
     }
     public function home(){
-        return view("user.home.index");
-    }
-    
-    public function profile(){
-        return view("user.profile");
+        $matches = MatchGame::all();
+        return view("user.home.index",compact("matches"));
     }
     public function quiz(){
         return view ("user.quiz");

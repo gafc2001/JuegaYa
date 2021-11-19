@@ -21,7 +21,8 @@ class CreateProfilesTable extends Migration
             $table->double("high");
             $table->date("time_playing");
             $table->string("favorite_sport");
-            $table->string("preferred_position");
+            // $table->string("preferred_position");
+            $table->string("profile_picture");
             $table->enum("gender",["Hombre","Mujer","Prefiero no decirlo"]);
             $table->timestamps();
         });

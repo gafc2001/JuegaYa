@@ -35,16 +35,6 @@
 .form-container.active{
     transform: translateY(0);
 }
-body.active::after{
-    top: 0;
-    background-color: #00000071;
-    position: fixed;
-    content: '';
-    width: 100vh;
-    height: 100vh;
-    z-index: 10;
-    left: 0;
-}
 .close-form{
     display: block;
     height:.5rem;

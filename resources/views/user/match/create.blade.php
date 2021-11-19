@@ -5,8 +5,8 @@
 <main class="section container">
     <form action="{{route('match.store')}}" class="form" method="POST">
         @csrf
-        <input type="hidden" name="latitude" id="latitude" value="" />
-        <input type="hidden" name="longitude" id="longitude" value="" />
+        <input type="hidden" name="latitude" id="latitude" required/>
+        <input type="hidden" name="longitude" id="longitude" required/>
         <span class="close-form" id="close-form"></span>
         <header>
             <h2 class="title-2">Crear partido</h2>
@@ -30,12 +30,21 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="players" class="title-3 mb-2">Deporte</label>
+            <div class="input-container">
+                <span class="input-icon">
+                    <i class="far fa-futbol"></i>
+                </span>
+                {{Form::select('sport_id',$sports,null,array('class'=>'select','placeholder'=>'Seleccione un deporte','id'=>'sport','required'))}}
+            </div>
+        </div>
+        <div class="form-group">
             <label for="players" class="title-3 mb-2">Jugadores</label>
             <div class="input-container">
                 <span class="input-icon">
                     <i class="fas fa-users"></i>
                 </span>
-                <input type="number" placeholder="Maximo jugadores" class="input" required>
+                <input type="number" placeholder="Maximo jugadores" class="input" name="max-participants"required min="1">
             </div>
         </div>
 
@@ -45,7 +54,7 @@
                 <span class="input-icon">
                     <i class="fas fa-map-marker-alt"></i>
                 </span>
-                {{Form::select('district_id',$districts,null,array('class'=>'','placeholder'=>'Seleccione distrito','id'=>'select','required'))}}
+                {{Form::select('district_id',$districts,null,array('class'=>'select','placeholder'=>'Seleccione distrito','id'=>'district','required'))}}
             </div>
             <div class="btn btn-transparent" id="btn-map">Ubicacion actual</div>
         </div>
