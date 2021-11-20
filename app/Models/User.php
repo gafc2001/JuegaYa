@@ -56,4 +56,8 @@ class User extends Authenticatable
             return "default-profile.png";
         }
     }
+
+    public function participation($match_id){
+        return $this->hasMany(Participant::class,'user_id')->get()->where('match_id',$match_id)->first();
+    }
 }

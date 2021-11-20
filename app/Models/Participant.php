@@ -20,4 +20,7 @@ class Participant extends Model
     public function match(){
         return $this->belongsTo(MatchGame::class)->first();
     }
+    public function getStatusMatch($match_id){
+        return $this->where('match_id', $match_id)->first();
+    }
 }

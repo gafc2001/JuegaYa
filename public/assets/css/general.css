@@ -9,14 +9,21 @@ html{
     --grey2-color : #C4C4C4;
     --blue-color : #246BFD;
     --red-color : #d12b2b;
-    --error-color:#ff4545;
+    
     --green-color : #50d161;
 
-    --bg-succes-color : #c3f3d7;
-    --succes-color : #2fd573;
+    --bg-success-color : #c3f3d7;
+    --gradient-success-color : #183e4d;
+    --success-color : #2fd573;
 
     --bg-info-color : #d7f0ff;
     --info-color : #3fb6ff;
+
+    --warning-color :#ff9500;
+    --gradient-warning-color : #7c391a;
+
+    --error-color:#f3052d;
+    --gradient-error-color : #462044;
 
     --gradient-orange-color : linear-gradient(137.49deg, #F4A58A 0%, #ED6B4E 96.01%);
     --bg-primary : #181829;
@@ -54,10 +61,15 @@ body.active::after{
     background-color: #00000071;
     position: fixed;
     content: '';
-    width: 100vh;
+    width: 100%;
     height: 100vh;
     z-index: 10;
     left: 0;
+}
+button{
+    background-color: transparent;
+    border: none;
+    appearance: none;
 }
 ul{
     list-style: none;
@@ -279,7 +291,7 @@ select:hover, select:active {
 }
 
 
-.message{
+.alert{
     position:absolute;
     top:.5rem;
     left:.5rem;
@@ -291,17 +303,35 @@ select:hover, select:active {
     opacity :0;
     transition: .6s;
 }
-.message.success{
-    border-left:1rem solid var(--succes-color);
-    background-color: var(--bg-succes-color);
-    color : var(--succes-color);
+.alert.success{
+    border-left:1rem solid var(--success-color);
+    background-color: var(--bg-success-color);
+    color : var(--success-color);
 }
-.message.info{
+.alert.info{
     border-left:1rem solid var(--info-color);
     background-color: var(--bg-info-color);
     color : var(--info-color);
-
 }
-.message.show{
+.alert.show{
     opacity :1;
+}
+
+.message{
+    padding :1rem;
+    border-radius: 2rem;
+    font-size: var(--fs-title2);
+}
+.message.success{
+    background-image: linear-gradient(240deg,var(--gradient-success-color) 10%, var(--bg-secondary) 90%);
+    color : var(--success-color);
+}
+.message.warning{
+    background-image: linear-gradient(240deg,var(--gradient-warning-color) 10%, var(--bg-secondary) 90%);
+    color : var(--warning-color);
+}
+.message.error{
+    background-image: linear-gradient(240deg,var(--gradient-error-color) 10%, var(--bg-secondary) 90%);
+    color : var(--error-color);
+
 }

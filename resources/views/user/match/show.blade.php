@@ -5,7 +5,7 @@
 
 @section('content')
 <header class="section container match-header m-y">
-    <div class="message" id="message">
+    <div class="alert" id="alert">
         <i class="fas fa-info-circle"></i>
         <span>Mensaje</span>
     </div>
@@ -18,10 +18,11 @@
             </div>
         </a>
         <h1 class="m-y t-center title-2 match-title">Partido de futbol</h1>
+        @if(auth()->id() == $match->host_user_id)
         <div class="requests">
             <div class="request-icon" id="request-icon">
                 <i class="fas fa-bell"></i>
-                <span class="count-requests center">2</span>
+                <span class="count-requests center" id="count-requests">{{$match->participantsRequests()->count()}}</span>
             </div>
             <div class="request-container">                
                 <ul class="request-list" id="request-list">
@@ -47,6 +48,7 @@
                 </ul>
             </div>
         </div>
+        @endif
     </nav>
     <div class="match-details text">
         <h3>Organizador</h3>
@@ -81,7 +83,7 @@
     <header class="match-player-header">
         <h2 class="text m-y">Jugadores del partido</h2>
         <div class="match-values center text-small">
-            <span class="current-players">{{$match->countParticipants()}}</span>
+            <span class="current-players" id="current-players">{{$match->participantsAcepted()->count()}}</span>
             <span class="match-polygon"></span>
             <span class="max-players">{{$match->max_participants}}</span>
         </div>
@@ -96,10 +98,28 @@
 </main>
 
 
-
 @if($match->host_user_id != auth()->id())
+
+
+
+
+
 <section class="section container m-y">
-    <div class="btn btn-secondary">Peticion pendiente</div>
+
+    @switch(auth()->user()->participation($match->id)->status)
+        @case("PENDIENTE")
+            <div class="message warning"><i class="fas fa-hourglass-start"></i> PENDIENTE</div>
+            @break
+        @case("ACEPTADO")
+            <div class="message success"><i class="fas fa-check-circle"></i> ACEPTADO</div>
+            @break
+        @case("RECHAZADO")
+            <div class="message error"><i class="fas fa-times-circle"></i> RECHAZADO</div>
+            @break
+    @endswitch
+
+    {{--Show button request if not host--}}
+    @if(auth()->user()->participation($match->id) == null)
     <form action="{{route('match.update',$match->id)}}"  role="form" method="POST">
         @csrf
         @method('PUT')
@@ -110,9 +130,13 @@
             Solicitar unirse
         </button>
     </form>
+    @endif
 </section>
 @endif
-@endsection
+
+@endsection 
+{{--End section content--}}
+
 
 @section('js')
 <script>

@@ -1,16 +1,18 @@
 window.addEventListener("DOMContentLoaded",function(){
     const requestIcon = document.getElementById("request-icon");
+    const countRequest = document.getElementById("count-requests");
     const requestList = document.getElementById("request-list");
     const acceptRequestButtons = document.getElementsByClassName("accept-request");
     const denyRequestButtons = document.getElementsByClassName("deny-request");
-    const message = document.getElementById("message");
+    const alert = document.getElementById("alert");
     const matchPlayers =document.getElementById("match-players");
+    const currentPlayers = document.getElementById("current-players");
+
     const toggleRequests = () =>{
         requestList.classList.toggle("toggleDown");
     }
 
     const acceptRequest = (e) => {
-        console.log();
         let partipantId = e.target.getAttribute('data-id');
         let response = request(partipantId,"ACEPTADO");
         response.then(rpt => {
@@ -29,23 +31,23 @@ window.addEventListener("DOMContentLoaded",function(){
 
     const showMessage = (msg,typeMessage) =>{
 
-        message.classList.remove("info");
-        message.classList.remove("success");
+        alert.classList.remove("info");
+        alert.classList.remove("success");
         switch(typeMessage){
             case "success":
-                message.children[0].classList[1] = "fa-check-circle";
-                message.classList.add("success");
+                alert.children[0].classList[1] = "fa-check-circle";
+                alert.classList.add("success");
                 break;
             case "info":
-                message.children[0].classList[1] = "fa-info-circle";
-                message.classList.add("info");
+                alert.children[0].classList[1] = "fa-info-circle";
+                alert.classList.add("info");
             break;
         }
-        message.classList.add("show");
+        alert.classList.add("show");
         
-        message.children[1].innerText = msg;
+        alert.children[1].innerText = msg;
         setTimeout(function(){
-            message.classList.remove("show");
+            alert.classList.remove("show");
         },3000);
     }
 
@@ -70,15 +72,14 @@ window.addEventListener("DOMContentLoaded",function(){
     const removeRequest = (e) => {
         let parent = e.target.parentNode.parentNode.parentNode;
         e.target.parentNode.parentNode.remove();
+        countRequest.innerText =  requestList.children.length;
         if(parent.children.length === 0) {
             parent.innerText = "No hay notificaciones";
         }
     }
-    
 
     const updateListOfParticipants = (data) => {
         data = JSON.parse(data);
-        console.log(data);
         const matchPlayer = 
         `<div class="match-player">
             <img src="{{asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
@@ -86,9 +87,8 @@ window.addEventListener("DOMContentLoaded",function(){
         const div = document.createElement('div');
         div.classList.add("match-player");
         div.innerHTML = `<img src="http://127.0.0.1:8000/assets/img/profile/${data.profile}"; alt=""></img>`;
-        console.log(matchPlayers.append(div));
-
-
+        matchPlayers.append(div);
+        currentPlayers.innerText = matchPlayers.children.length;
     }
 
     requestIcon.addEventListener("click",toggleRequests);

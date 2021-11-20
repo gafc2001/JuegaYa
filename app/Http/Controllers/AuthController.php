@@ -15,7 +15,8 @@ class AuthController extends Controller
         return view('auth.index');
     }
     public function logout(){
-        return view('auth.index');
+        Auth::logout();
+        return redirect()->route('login');
     }
     public function signin(Request $request){
         $credentials = $request->validate(User::$credentials);
