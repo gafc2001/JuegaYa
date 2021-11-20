@@ -36,8 +36,10 @@
     margin-bottom: .6rem;
 }
 .match-info .match-profile img{
+    
     border-radius: 4rem;
-    width: 4rem;
+    width: 5rem;
+    height: 5rem;
     margin-right: 1rem;
 }
 .match-info .icon{

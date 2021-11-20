@@ -44,7 +44,7 @@
                 <span class="input-icon">
                     <i class="fas fa-users"></i>
                 </span>
-                <input type="number" placeholder="Maximo jugadores" class="input" name="max-participants"required min="1">
+                <input type="number" placeholder="Maximo jugadores" class="input" name="max_participants" required min="1">
             </div>
         </div>
 

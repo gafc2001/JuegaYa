@@ -11,6 +11,13 @@ html{
     --red-color : #d12b2b;
     --error-color:#ff4545;
     --green-color : #50d161;
+
+    --bg-succes-color : #c3f3d7;
+    --succes-color : #2fd573;
+
+    --bg-info-color : #d7f0ff;
+    --info-color : #3fb6ff;
+
     --gradient-orange-color : linear-gradient(137.49deg, #F4A58A 0%, #ED6B4E 96.01%);
     --bg-primary : #181829;
     --bg-secondary : #222232;
@@ -67,6 +74,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     background: none;
     z-index: 1;
 } */
+img{
+    object-fit: cover;
+}
 .content{
     display: flex;
     flex-direction: column;
@@ -136,6 +146,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
+.mb-1{
+    margin-bottom: 1rem;
+}
 .mb-2{
     margin-bottom: 2rem;
 }
@@ -174,6 +187,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     border: none;
     color: var(--white-color);
 }
+.btn-sm{
+    padding:.5rem;
+    font-size: var(--fs-small);
+}
 .btn-primary{
     width: 100%;
     background-color:var(--blue-color);
@@ -181,6 +198,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }   
 .btn-secondary{
     background-image: var(--gradient-orange-color);
+    flex: 2;
+}
+.btn-danger{
+    background-color: var(--red-color);
     flex: 2;
 }
 .btn-transparent{
@@ -255,4 +276,32 @@ select:hover, select:active {
 }
 .input-container .input:focus{
     color: var(--white-color);
+}
+
+
+.message{
+    position:absolute;
+    top:.5rem;
+    left:.5rem;
+    width:60%;
+    padding: 1rem;
+    font-size: var(--fs-text);
+    font-weight: var(--fw-bold);
+    border-radius: 1rem;
+    opacity :0;
+    transition: .6s;
+}
+.message.success{
+    border-left:1rem solid var(--succes-color);
+    background-color: var(--bg-succes-color);
+    color : var(--succes-color);
+}
+.message.info{
+    border-left:1rem solid var(--info-color);
+    background-color: var(--bg-info-color);
+    color : var(--info-color);
+
+}
+.message.show{
+    opacity :1;
 }

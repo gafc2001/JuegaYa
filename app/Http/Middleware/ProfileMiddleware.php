@@ -17,11 +17,8 @@ class ProfileMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        error_log("profile");
         if(!is_null(Auth::user())){
-            error_log("auth");
             if(is_null(Auth::user()->profile())){
-                error_log("profile.create");
                 return redirect()->route('profile.create');
             }
         }

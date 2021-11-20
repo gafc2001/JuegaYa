@@ -16,7 +16,7 @@ class CreateDistrictsTable extends Migration
     {
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            $table->string('district');
+            $table->string('district')->unique();
             $table->timestamps();
         });
         District::create(['district'=>'Callao']);

@@ -5,6 +5,10 @@
 
 @section('content')
 <header class="section container match-header m-y">
+    <div class="message" id="message">
+        <i class="fas fa-info-circle"></i>
+        <span>Mensaje</span>
+    </div>
     <nav class="nav-match">
         <a href="{{route('home')}}">
             <div class="match-icon m-y">
@@ -14,13 +18,47 @@
             </div>
         </a>
         <h1 class="m-y t-center title-2 match-title">Partido de futbol</h1>
+        <div class="requests">
+            <div class="request-icon" id="request-icon">
+                <i class="fas fa-bell"></i>
+                <span class="count-requests center">2</span>
+            </div>
+            <div class="request-container">                
+                <ul class="request-list" id="request-list">
+                    @if($match->participantsRequests()->get()->isEmpty())
+                        No hay notificaciones
+                    @else
+                        @foreach ($match->participantsRequests()->get() as $participant)
+                        <li class="request-item m-y">
+                            <header class="request-header mb-1">
+                                <div class="request-player">
+                                    <img src="{{asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
+                                </div>
+                                <div class="request-name">{{$participant->user()->profile()->getFullName()}}</div>
+                            </header>
+                            <div class="btn-container">
+                                <div class="btn btn-sm btn-primary accept-request" data-id="{{$participant->id}}">Aceptar</div>
+                                <div class="btn btn-sm btn-danger deny-request"  data-id="{{$participant->id}}">Rechazar</div>
+                            </div>
+                        </li>    
+                        @endforeach
+                    @endif
+                    
+                </ul>
+            </div>
+        </div>
     </nav>
     <div class="match-details text">
         <h3>Organizador</h3>
 
         <div class="host match-player m-y">
-            <img src="{{ asset('assets/img/profile/default-profile.png')}}" alt="">
-            <span>{{$match->host()->email}}</span>
+            @if(!is_null($match->host()->profile()))
+            <img src="{{asset('assets/img/profile/'.$match->host()->profile()->profile_picture)}}" alt="profile">
+                <span>{{$match->host()->profile()->getFullName()}}</span>
+            @else
+                <img src="{{ asset('assets/img/profile/default-profile.png')}}" alt="profile">
+                <span>{{$match->host()->email}}</span>
+            @endif
         </div>
         <!-- <div class="match-status in-game text-small mb-2">En juego</div> -->
         <!-- <div class="match-status pregame text-small mb-2">Por comenzar</div> -->
@@ -48,22 +86,38 @@
             <span class="max-players">{{$match->max_participants}}</span>
         </div>
     </header>
-    <div class="match-players">
-        @foreach ($match->participants as $participant)
+    <div class="match-players" id="match-players">
+        @foreach ($match->participantsAcepted()->get() as $participant)
             <div class="match-player">
-                <img src="{{asset('assets/img/profile/default-profile.png')}}" alt="">
+                <img src="{{asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
             </div>
         @endforeach
-        
-
     </div>
 </main>
 
-@if(!auth()->id())
+
+
+@if($match->host_user_id != auth()->id())
 <section class="section container m-y">
-    <div class="btn btn-primary">
-        Solicitar unirse
-    </div>
+    <div class="btn btn-secondary">Peticion pendiente</div>
+    <form action="{{route('match.update',$match->id)}}"  role="form" method="POST">
+        @csrf
+        @method('PUT')
+
+        <input type="hidden" name="match_id" value="{{$match->id}}">
+        <input type="hidden" name="status" value="PENDIENTE">
+        <button class="btn btn-primary" type="submit">
+            Solicitar unirse
+        </button>
+    </form>
 </section>
 @endif
+@endsection
+
+@section('js')
+<script>
+    let csrf_token = "{{csrf_token()}}"
+    let url = "{{route('match.status',$match->id)}}"
+</script>
+<script src="{{asset('assets/js/match.js')}}"></script>
 @endsection

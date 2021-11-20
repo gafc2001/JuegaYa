@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\District;
 use App\Models\MatchGame;
 use App\Models\MatchStatus;
+use App\Models\Participant;
 use App\Models\Sport;
 use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class MatchController extends Controller
 {
@@ -18,9 +20,12 @@ class MatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function index()
     {
-        return view('user.match.index');
+        
     }
 
     /**
@@ -49,7 +54,7 @@ class MatchController extends Controller
             'sport_id' => $request->sport_id,
             'district_id' => $request->district_id,
             'date_time' => date('Y-m-d H:i:s',strtotime($request->date.$request->time)),
-            'max_participants' => $request->district_id,
+            'max_participants' => $request->max_participants,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
             'created_at' => Carbon::now(),
@@ -91,9 +96,45 @@ class MatchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $participant = new Participant([
+            'user_id' => Auth::id(),
+            'status' => $request->status,
+        ]);
+        $match = MatchGame::find($id);
+        $match->participants()->save($participant);
+        return redirect()->route('match.show',$id);
+        return response()->json([
+            'message' => "Se envio tu solictud"
+        ]);
+
     }
 
+    public function status(Request $request,$id){
+        $data = json_decode($request->getContent());
+
+        // return response()->json(['message' => "hola"]);
+
+        $participant = MatchGame::find($id)
+                    ->participants()
+                    ->find($data->participant_id);
+        $participant->update(['status' => $data->status]);
+        $dto_participant = [
+            'user_id' => $participant->user_id,
+            'profile' => $participant->user()->getProfilePicture(),
+        ];
+        if($data->status == "ACEPTADO"){
+            return response()->json([
+                'status' => true,
+                'message' => "Se acepto la solictud",
+                'participant' => json_encode($dto_participant)
+            ]);
+        }else{
+            return response()->json([
+                'status' =>false,
+                'message' => "Se rechazo la solictud",
+            ]);
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *

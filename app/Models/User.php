@@ -49,4 +49,11 @@ class User extends Authenticatable
     public function recomendations(){
         return $this->hasMany(Recomendations::class);
     }
+    public function getProfilePicture(){
+        if(!is_null($this->profile())){
+            return $this->profile()->profile_picture;
+        }else{
+            return "default-profile.png";
+        }
+    }
 }

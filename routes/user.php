@@ -12,5 +12,7 @@ Route::get('/profile',[UserController::class,'profile'])->name('profile');
 Route::get('/quiz',[UserController::class,'quiz'])->name('quiz');
 
 
-Route::resource('/match',MatchController::class)->middleware('auth');
+Route::resource('/match',MatchController::class);
+Route::put('/match/{match}/status',[MatchController::class,'status'])->name('match.status');
+
 Route::resource('/profile',ProfileController::class);
