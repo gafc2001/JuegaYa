@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Answer extends Model
+class Hobbie extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'answer'
+        'hobbie'
     ];
-    public function question(){
-        return $this->belongsTo(Question::class);
-    }
+    use HasFactory;
 }

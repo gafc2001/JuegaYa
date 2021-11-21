@@ -22,9 +22,10 @@ class AuthController extends Controller
         $credentials = $request->validate(User::$credentials);
         if(Auth::attempt($credentials)){
             // $request->session->regenerate();
-            return redirect(RouteServiceProvider::HOME);
+            // return redirect(RouteServiceProvider::HOME);
+            return redirect()->route('quiz.index');
         }
-        return back()->withErrors(User::$signin_error);
+        return redirect()->route('login')->withErrors(User::$signin_error);
     }
     public function signup(Request $request){
         $request->validate(User::$credentials);
@@ -35,6 +36,6 @@ class AuthController extends Controller
             'created_at' =>Carbon::now(),
             'updated_at' =>Carbon::now(),
         ]);
-        return view('auth.index');
+        return redirect()->route('login');
     }
 }

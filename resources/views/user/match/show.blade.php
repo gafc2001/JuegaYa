@@ -105,31 +105,33 @@
 
 
 <section class="section container m-y">
-
-    @switch(auth()->user()->participation($match->id)->status)
-        @case("PENDIENTE")
-            <div class="message warning"><i class="fas fa-hourglass-start"></i> PENDIENTE</div>
-            @break
-        @case("ACEPTADO")
-            <div class="message success"><i class="fas fa-check-circle"></i> ACEPTADO</div>
-            @break
-        @case("RECHAZADO")
-            <div class="message error"><i class="fas fa-times-circle"></i> RECHAZADO</div>
-            @break
-    @endswitch
-
-    {{--Show button request if not host--}}
+    {{--Show button request if not host--}}    
     @if(auth()->user()->participation($match->id) == null)
-    <form action="{{route('match.update',$match->id)}}"  role="form" method="POST">
-        @csrf
-        @method('PUT')
+        <form action="{{route('match.update',$match->id)}}"  role="form" method="POST">
+            @csrf
+            @method('PUT')
 
-        <input type="hidden" name="match_id" value="{{$match->id}}">
-        <input type="hidden" name="status" value="PENDIENTE">
-        <button class="btn btn-primary" type="submit">
-            Solicitar unirse
-        </button>
-    </form>
+            <input type="hidden" name="match_id" value="{{$match->id}}">
+            <input type="hidden" name="status" value="PENDIENTE">
+            <button class="btn btn-primary" type="submit">
+                Solicitar unirse
+            </button>
+        </form>
+    @else
+        @switch(auth()->user()->participation($match->id)->status)
+            @case("PENDIENTE")
+                <div class="message warning"><i class="fas fa-hourglass-start"></i> PENDIENTE</div>
+                @break
+            @case("ACEPTADO")
+                <div class="message success"><i class="fas fa-check-circle"></i> ACEPTADO</div>
+                @break
+            @case("RECHAZADO")
+                <div class="message error"><i class="fas fa-times-circle"></i> RECHAZADO</div>
+                @break
+        @endswitch
+        
+    
+    
     @endif
 </section>
 @endif
