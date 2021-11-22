@@ -1,7 +1,5 @@
 @extends('templates.layout')
-@section('css')
-<link rel="stylesheet" href="{{asset('assets/css/match.css')}}">
-@endsection
+
 
 @section('content')
 <header class="section container match-header m-y">
@@ -31,12 +29,14 @@
                     @else
                         @foreach ($match->participantsRequests()->get() as $participant)
                         <li class="request-item m-y">
-                            <header class="request-header mb-1">
-                                <div class="request-player">
-                                    <img src="{{asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
-                                </div>
-                                <div class="request-name">{{$participant->user()->profile()->getFullName()}}</div>
-                            </header>
+                            <a href="{{route('profile.show',$participant->user_id)}}">
+                                <header class="request-header mb-1 link">
+                                    <div class="request-player">
+                                        <img src="{{asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
+                                    </div>
+                                    <div class="request-name">{{$participant->user()->profile()->getFullName()}}</div>
+                                </header>
+                            </a>
                             <div class="btn-container">
                                 <div class="btn btn-sm btn-primary accept-request" data-id="{{$participant->id}}">Aceptar</div>
                                 <div class="btn btn-sm btn-danger deny-request"  data-id="{{$participant->id}}">Rechazar</div>
@@ -76,6 +76,10 @@
         <div class="place match-detail">
             <i class="fas fa-map-marker-alt"></i>
             <span>{{$match->district()}}</span>
+        </div>
+        <div class="match-map m-y" id="match-map">
+            <iframe id="map"width="100%" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps?q={{$match->latitude}},{{$match->longitude}}&hl=es;z%3D14&amp&output=embed">
+            </iframe>
         </div>
     </div>
 </header>
@@ -139,6 +143,9 @@
 @endsection 
 {{--End section content--}}
 
+@section('css')
+<link rel="stylesheet" href="{{asset('assets/css/match.css')}}">
+@endsection
 
 @section('js')
 <script>

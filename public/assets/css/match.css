@@ -31,6 +31,7 @@
     position:absolute;
     top:100%;
     right:0;
+    max-width: 30rem;
     width: 60vw;
     overflow: hidden;
 }
@@ -48,13 +49,17 @@
 }
 .request-header{
     display:flex;
+    align-items: center;
+   
 }
 .request-player{
     width:4rem;
     height:4rem;
+    margin-right: 1rem;
 }
 .request-name{
-    font-size:var(--fs-small);
+    font-size:var(--fs-text);
+    width: 40%;
 }
 .request-player img{
     width:4rem;

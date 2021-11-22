@@ -21,7 +21,6 @@ class AuthController extends Controller
     public function signin(Request $request){
         $credentials = $request->validate(User::$credentials);
         if(Auth::attempt($credentials)){
-            // $request->session->regenerate();
             // return redirect(RouteServiceProvider::HOME);
             return redirect()->route('quiz.index');
         }

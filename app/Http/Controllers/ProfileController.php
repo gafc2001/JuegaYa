@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ class ProfileController extends Controller
     {
         return view('user.profile.index');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -69,7 +70,9 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        // return dd($user);
+        return view('user.profile.show')->with('user',$user);
     }
 
     /**
@@ -104,5 +107,15 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function comment($id)
+    {
+        return view('user.profile.comments');
+    }
+    public function saveComment(Request $request,$id){
+
+        error_log($id);
+        return response()->json($request->getContent());
     }
 }

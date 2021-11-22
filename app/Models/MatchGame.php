@@ -26,12 +26,14 @@ class MatchGame extends Model
     public function countParticipants(){
         return $this->hasMany(Participant::class,'match_id')->count();
     }
+
     public function date(){
         return Carbon::parse($this->date_time)->format('d/m/Y');
     }
     public function time(){
         return Carbon::parse($this->date_time)->format('g:i A');
     }
+    
 
     public function participantsAcepted(){
         return $this->participants()->where('status','ACEPTADO');

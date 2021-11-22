@@ -7,7 +7,8 @@ window.addEventListener("DOMContentLoaded",function(){
     const alert = document.getElementById("alert");
     const matchPlayers =document.getElementById("match-players");
     const currentPlayers = document.getElementById("current-players");
-
+    const map = document.getElementById("map");
+    
     const toggleRequests = () =>{
         requestList.classList.toggle("toggleDown");
     }

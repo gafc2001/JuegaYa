@@ -1,6 +1,37 @@
+.header-container{
+    background-color: var(--bg-secondary);
+    padding: 1rem 2rem;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
 .header-home{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding-right: 2rem;
+}
+.sidebar{
+    padding: 2rem;
+    background-color: var(--bg-primary);
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    width: 30rem;
+    min-height: 100vh;
+}
+.sidebar .districts{
+    scrollbar-width: none;
+    overflow-y: scroll;
+    height: 30rem;
+}
+.sidebar .districts::scrollbar{
+    display: none;
+}
+.districts .district{
+    font-size: var(--fs-text);
 }
 .notification{
     position: relative;
@@ -24,6 +55,9 @@
     font-size:var(--fs-small);
     font-weight: var(--fw-bold);
     background-color: var(--blue-color);
+}
+.matches{
+    padding-top: 3rem;
 }
 .match{
     border-bottom: 1px solid var(--grey-color);
