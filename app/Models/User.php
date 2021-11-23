@@ -47,7 +47,7 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class)->first();
     }
     public function recomendations(){
-        return $this->hasMany(Recomendations::class);
+        return $this->hasMany(Recomendation::class)->orderByDesc("created_at");
     }
     public function getProfilePicture(){
         if(!is_null($this->profile())){

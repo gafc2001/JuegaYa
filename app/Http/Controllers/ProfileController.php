@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\Recomendation;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -71,7 +72,6 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        // return dd($user);
         return view('user.profile.show')->with('user',$user);
     }
 
@@ -110,12 +110,27 @@ class ProfileController extends Controller
     }
 
     public function comment($id)
-    {
-        return view('user.profile.comments');
+    {   
+        $user = User::find($id);
+        return view('user.profile.comments')->with('user', $user);
     }
-    public function saveComment(Request $request,$id){
+    public function saveComment(Request $request,$id)
+    {
+        $data = json_decode($request->getContent());
+        User::find($id);
+        $recomendation = Recomendation::create([
+            'comment' => $data->comment,
+            'rank' => $data->rank,
+            'comment_user_id' => $data->comment_user_id,
+            'user_id' => $id,
+        ]);
 
-        error_log($id);
-        return response()->json($request->getContent());
+        return response()->json([
+            'picture' => $recomendation->user()->getProfilePicture(),
+            'full_name' => $recomendation->user()->profile()->getFullName(),
+            'rank' => $recomendation->rank,
+            'date' => $recomendation->getDate(),
+            'comment' => $recomendation->comment
+        ]);
     }
 }

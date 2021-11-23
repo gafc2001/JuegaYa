@@ -112,8 +112,6 @@ class MatchController extends Controller
     public function status(Request $request,$id){
         $data = json_decode($request->getContent());
 
-        // return response()->json(['message' => "hola"]);
-
         $participant = MatchGame::find($id)
                     ->participants()
                     ->find($data->participant_id);

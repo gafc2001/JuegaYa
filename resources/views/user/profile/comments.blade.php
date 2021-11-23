@@ -1,10 +1,12 @@
-@extends('user.profile.layout')
+@extends('templates.layout')
 
-@section('profile')
+@section('content')
+@include('user.profile.header',['user' => $user])
 <main class="section container">
+    @if(auth()->id() != $user->id)    
     <div class="create-comment mb-2">
         <div class="create-comment-img f-start">
-            <img src="{{asset('assets/img/profile/MRdj7FXcc37j6u544uDL5YHGy7BuCPXEbFrxPK4Q.jpg')}}" alt="">
+            <img src="{{asset('assets/img/profile/'.auth()->user()->getProfilePicture())}}" alt="profile">
         </div>
         <div class="create-comment-content">
             <textarea id="comment-content" placeholder="Escribe tu comentario aqui" rows="1"></textarea>
@@ -32,72 +34,42 @@
             <span class="fas fa-paper-plane"></span>
         </div>
     </div>
+    @endif
     <div class="comments">
+        @foreach ($user->recomendations()->get() as $comment)
         <div class="comment-item mb-2">
-            <img src="{{asset('assets/img/profile/default-profile.png')}}" alt="">
+            <img src="{{asset('assets/img/profile/'.$comment->user()->getProfilePicture())}}" alt="">
             <div class="comment-header">
                 <header class="comment-header title-2">
-                    <div class="comment-user">Norman Reedus</div>
+                    <div class="comment-user">{{$comment->user()->profile()->getFullName()}}</div>
                     <span class="rank text-sm">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
+                        @for ($i = 0;$i<$comment->rank;$i++)
+                            <i class="fas fa-star"></i>    
+                        @endfor
+                        @for ($i = 0;$i<(5-$comment->rank);$i++)
+                            <i class="far fa-star"></i>    
+                        @endfor
+                        
                     </span>
-                    <span class="date text-sm">Ayer</span>
+                    <span class="date text-sm">{{$comment->getDate()}}</span>
                 </header>
                 <p class="comment">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque quia porro, itaque aliquam deleniti cupiditate est sint, ea natus impedit totam? Minus aspernatur quis voluptatum a! Corrupti incidunt dolor ab.
+                    {{$comment->comment}}
                 </p>
             </div>
-            
         </div>
-        <div class="comment-item mb-2">
-            <img src="{{asset('assets/img/profile/default-profile.png')}}" alt="">
-            <div class="comment-header">
-                <header class="comment-header title-2">
-                    <div class="comment-user">Norman Reedus</div>
-                    <span class="rank text-sm">
-                        <i class="star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </span>
-                    <span class="date text-sm">Ayer</span>
-                </header>
-                <p class="comment">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque quia porro, itaque aliquam deleniti cupiditate est sint, ea natus impedit totam? Minus aspernatur quis voluptatum a! Corrupti incidunt dolor ab.
-                </p>
-            </div>
-            
-        </div>
-        <div class="comment-item mb-2">
-            <img src="{{asset('assets/img/profile/default-profile.png')}}" alt="">
-            <div class="comment-header">
-                <header class="comment-header title-2">
-                    <div class="comment-user">Norman Reedus</div>
-                    <span class="rank text-sm">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </span>
-                    <span class="date text-sm">Ayer</span>
-                </header>
-                <p class="comment">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque quia porro, itaque aliquam deleniti cupiditate est sint, ea natus impedit totam? Minus aspernatur quis voluptatum a! Corrupti incidunt dolor ab.
-                </p>
-            </div>
-            
-        </div>
+        @endforeach
     </div>
 </main>
 @endsection
 
+@section('css'))
+<link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
+@endsection
 @section('js')
-<script>const url = "{{route('profile.saveComment',5)}}"</script>
+<script>
+const url = "{{route('profile.saveComment',$user->id)}}";
+const commentUserId = "{{auth()->id()}}";
+</script>
 <script src="{{asset('assets/js/comment.js')}}"></script>
 @endsection

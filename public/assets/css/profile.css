@@ -99,6 +99,7 @@
     flex-wrap: wrap;
 }
 .comment-item{
+    width: 100%;
     display: flex;
     font-size: var(--fs-text);
     background-color: var(--bg-third);
