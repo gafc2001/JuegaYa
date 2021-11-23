@@ -13,7 +13,14 @@
     </div>
     <div class="t-center m-y">
         <h3 class="user-name title-3">{{$user->profile()->getFullName()}}</h3>
-        <p class="user-desc text-light">Coding and playing 🔥</p>
+        <p class="user-desc text">
+            @for ($i = 0;$i<(intval($user->recomendations()->avg('rank')));$i++)
+                <i class="fas fa-star"></i>    
+            @endfor
+            @for ($i = 0;$i<(5-intval($user->recomendations()->avg('rank')));$i++)
+                <i class="far fa-star"></i>    
+            @endfor
+        </p>
     </div>
     <nav class="btn-container btn-profile">
         <a href="{{route('profile.index')}}" class="btn btn-secondary">Mi perfil</a>

@@ -13,6 +13,9 @@
     </div>
 </header>
 <sidebar class="sidebar">
+        <pre>
+            {{request()->get('district')}}
+        </pre>
     <h2 class="title-2">Distritos</h2>
     <div class="search form-group">
         <div class="input-container">
@@ -22,12 +25,13 @@
             <input type="text" placeholder="Buscar" class="input" id="search">
         </div>
     </div>
-    <ul class="districts">
-        <li class="district mb-2">
+    <ul class="districts mb-2">
+        <li class="district {{!request()->get('district')?'active':''}}">
                 <a href="{{route('home')}}">Todos los distritos</a>
         </li>
         @foreach ($districts as $district)
-            <li class="district mb-2">
+
+            <li class="district {{request()->get('district')==$district->id?'active':''}}">
                 <a href="{{route('home','district='.$district->id)}}">{{$district->district}}</a>
             </li>
         @endforeach
@@ -96,6 +100,7 @@
         <i class="fas fa-plus"></i>
     </a>
 </main>
+
 
 @endsection
 

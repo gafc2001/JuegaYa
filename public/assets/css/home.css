@@ -21,17 +21,24 @@
     left: 0;
     width: 30rem;
     min-height: 100vh;
+    overflow-y: scroll;
 }
 .sidebar .districts{
     scrollbar-width: none;
     overflow-y: scroll;
     height: 30rem;
+    padding-right: 1rem;
 }
-.sidebar .districts::scrollbar{
-    display: none;
+.sidebar .districts::-webkit-scrollbar{
+    width: 1rem;
 }
 .districts .district{
     font-size: var(--fs-text);
+    padding: .8rem;
+    border-radius: 1rem;
+}
+.district.active{
+    background-color: var(--blue-color);
 }
 .notification{
     position: relative;

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="//code-eu1.jivosite.com/widget/xtLtNTTsCu" async></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,8 +77,10 @@
 
     <div class="background"></div>
 
-    @yield('js')
+    
+    
     <script src="https://kit.fontawesome.com/0dadf959e1.js" crossorigin="anonymous"></script>
+    @yield('js')
 </body>
 
 </html>

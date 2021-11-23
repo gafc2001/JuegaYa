@@ -62,6 +62,16 @@ body{
 body::after{
     transition: 1s;
 }
+::-webkit-scrollbar {
+    width: 2rem;
+    background-color: var(--grey2-color);
+    border-radius:1rem;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 5rem;
+    padding-left: 1rem;
+    background-color: var(--blue-color);
+}
 .background{
     background-image: url('/assets/img/background.jpg');
     background-position: bottom;
