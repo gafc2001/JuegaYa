@@ -44,30 +44,23 @@ window.addEventListener("DOMContentLoaded", function () {
         commentContent.classList.remove("invalid-input");
     }
 
-
+    const printStars = (number,active) => {
+        let stars = ""
+        let star = active?'<i class="fas fa-star"></i>':'<i class="far fa-star"></i>';
+        for(let i=0; i<number;i++){
+            stars += star;
+        }
+        return stars;
+    }
     const commentDiv = (comment) => {
         const content = `
-        <div class="comment-item mb-2">
             <img src="http://127.0.0.1:8000/assets/img/profile/${comment.picture}" alt="">
             <div class="comment-header">
                 <header class="comment-header title-2">
                     <div class="comment-user">${comment.full_name}</div>
                     <span class="rank text-sm">
-                        ${()=>{ 
-                            let stars = ""
-                            for(let i=0; i<comment.rank;i++){
-                                stars += '<i class="fas fa-star"></i>'
-                            }
-                            return stars;
-                        }}
-                        ${()=>{
-                            let stars = ""
-                            for(let i=0; i<5-comment.rank;i++){
-                                stars += '<i class="far fa-star"></i>'
-                            }
-                            return stars;
-                        }}
-                        
+                        ${printStars(comment.rank,true)}
+                        ${printStars(5-comment.rank,false)}   
                     </span>
                     <span class="date text-sm">${comment.date}</span>
                 </header>
@@ -75,15 +68,14 @@ window.addEventListener("DOMContentLoaded", function () {
                     ${comment.comment}
                 </p>
             </div>
-        </div>
         `;
         const div = document.createElement('div');
         div.classList.add('comment-item');
         div.classList.add('mb-2');
         div.innerHTML = content;
         commentList.prepend(div);
+        
     };
-
     const onSend = (e) => {
 
         if (!commentContent.value == "") {

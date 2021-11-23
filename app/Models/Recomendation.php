@@ -21,8 +21,10 @@ class Recomendation extends Model
         return $this->belongsTo(User::class,'comment_user_id')->first();
     }
     public function getDate(){
+        Carbon::setLocale('es');
         $now = Carbon::now();
-        $time = Carbon::createFromDate($this->create_at);
+        $time = Carbon::createFromDate($this->created_at);
         return $time->diffForHumans($now);
     }
+    
 }
