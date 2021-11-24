@@ -50,8 +50,8 @@ class User extends Authenticatable
         return $this->hasMany(Recomendation::class)->orderByDesc("created_at");
     }
     public function getProfilePicture(){
-        if(!is_null($this->profile())){
-            return $this->profile()->profile_picture;
+        if(!is_null($this->profile()) && !is_null($this->profile()->profile_picture)){
+                return $this->profile()->profile_picture;
         }else{
             return "default-profile.png";
         }

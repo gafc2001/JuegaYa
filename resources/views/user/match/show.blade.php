@@ -1,6 +1,4 @@
 @extends('templates.layout')
-
-
 @section('content')
 <header class="section container match-header m-y">
     <div class="alert" id="alert">
@@ -94,9 +92,11 @@
     </header>
     <div class="match-players" id="match-players">
         @foreach ($match->participantsAcepted()->get() as $participant)
-            <div class="match-player">
-                <img src="{{asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
-            </div>
+            <a href="{{route('profile.show',$participant->user_id)}}"" class="link">
+                <div class="match-player">
+                    <img src="{{asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
+                </div>
+            </a>
         @endforeach
     </div>
 </main>

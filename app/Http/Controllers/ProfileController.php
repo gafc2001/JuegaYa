@@ -83,7 +83,9 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $user = User::find($id);
+        $user = User::find($id);
+        return view('user.profile.edit',compact('user'));
     }
 
     /**
@@ -95,7 +97,34 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $profile = User::find($id)->profile();
+        $file = $request->file('profile_picture');
+        $file_name = "";
+        //Check if the user send an image
+        if(!is_null($file)){
+            //Delete the image if exists
+            $exists = Storage::disk('public')->exists('img/profile/'.$profile->profile_picture);
+            if($exists){
+                $delete = Storage::disk('public')->delete('img/profile/'.$profile->profile_picture);
+            }
+
+            // //Save the image
+            Storage::disk('public')->put('img/profile',$file);
+            $file_name = $file->hashName();
+        }else{
+            $file_name = $profile->profile_picture;
+        }
+        $profile->update([
+            'first_name'=> $request->first_name,
+            'last_name'=> $request->last_name,
+            'age'=> $request->age,
+            'high'=> $request->high,
+            'time_playing'=> $request->time_playing,
+            'favorite_sport'=> $request->favorite_sport,
+            'profile_picture'=> $file_name,
+            'gender'=> $request->gender,
+        ]);
+        return redirect()->route('profile.index');
     }
 
     /**

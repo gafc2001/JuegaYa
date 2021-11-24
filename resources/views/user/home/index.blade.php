@@ -114,7 +114,7 @@
                 <div class="match-players match-item center">
                     <p class="text-small tc-primary">Jugadores</p>
                     <div class="match-values center text-small">
-                        <span class="current-players">{{$match->countParticipants()}}</span>
+                        <span class="current-players">{{$match->participantsAcepted()->count()}}</span>
                         <span class="match-polygon"></span>
                         <span class="max-players">{{$match->max_participants}}</span>
                     </div>
@@ -133,7 +133,7 @@
    
     <div class="container footer-content">
         <div class="section book">
-            <h4 class="title-3 mb-1 t-center">Libro de reclamaciones</h4>
+            <h4 class="text-sm mb-1 t-center">Libro de reclamaciones</h4>
             <div class="center">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">

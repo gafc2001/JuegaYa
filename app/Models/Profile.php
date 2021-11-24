@@ -22,6 +22,7 @@ class Profile extends Model
     ];
     protected $casts = [
         'time_playing' => 'date:Y-m-d',
+        'high' => 'double',
     ];
     public function getFullName(){
         return "{$this->first_name} {$this->last_name}";

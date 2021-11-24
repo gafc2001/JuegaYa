@@ -1,3 +1,12 @@
+.chatCopyright_2417{
+    display: none!important;   
+}
+.logoIcon_bf72{
+    height: 0 !important;;
+}
+.wrap_c0eb{
+    bottom: 16rem!important;
+}
 html{
     font-size:62.5%;
     scroll-behavior: smooth;
@@ -60,6 +69,16 @@ body{
 body::after{
     transition: 1s;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    box-shadow: 0 0 0 30px var(--bg-secondary) inset !important;
+    
+}
+input:-webkit-autofill{
+    -webkit-text-fill-color: var(--white-color) !important;
+}
 ::-webkit-scrollbar {
     width: 2rem;
     background-color: var(--grey2-color);
@@ -111,6 +130,13 @@ body.active::after{
 .parent{
     position: relative;
     z-index: 5;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.parent > :last-child{
+    padding-bottom: 10rem;
 }
 button{
     background-color: transparent;
