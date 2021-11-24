@@ -1,3 +1,12 @@
+.chatCopyright_2417{
+    display: none!important;   
+}
+.logoIcon_bf72{
+    height: 0 !important;;
+}
+.wrap_c0eb{
+    bottom: 16rem!important;
+}
 .header-container{
     background-color: var(--bg-secondary);
     padding: 1rem 2rem;
@@ -13,15 +22,24 @@
     align-items: center;
     padding-right: 2rem;
 }
+.header-home .title-2{
+    flex: 1;
+}
+.menu-icon{
+    display: none;
+}
 .sidebar{
     padding: 2rem;
     background-color: var(--bg-primary);
     position: fixed;
+    z-index: 100;
     top: 5rem;
     left: 0;
     width: 30rem;
-    min-height: 100vh;
     overflow-y: scroll;
+    height: 90vh;
+    padding-bottom: 20rem;
+    transition: .4s ease-in-out;
 }
 .sidebar .districts{
     scrollbar-width: none;
@@ -149,13 +167,83 @@
     border-radius:2rem;
 }
 
+.book{
+    border-radius: .7rem;
+    padding:1rem;
+    border: 1px solid var(--white-color);
+    transition: .3s ease-in-out;
+}
+.book:hover{
+    border-color: var(--blue-color);
+    background-color: var(--blue-color);
+}
+.book svg{
+    width:50%;
+    height: 50%;
+}
+.book path{
+    fill: var(--white-color);
+}
 .btn-absolute{
     position: fixed;
     bottom: 8rem;
-    right: 1rem;
-    padding:.8rem 1rem;
+    right: 2rem;
     font-size: 3rem;
-    width:5.5rem;
-    height: 5.5rem;
+    width:6.5rem;
+    height: 6.5rem;
     border-radius:6rem;
+}
+.footer-main{
+    
+    padding-bottom: 3rem;
+    background-color: var(--bg-primary);
+    color: var(--white-color);
+}
+.footer-main .footer-content{
+    display: flex;
+    justify-content: space-between;
+}
+.footer-main .book{
+    width: 17rem;
+}
+.footer-main .book svg{
+    width: 6rem;
+    height: 6rem;
+}
+@media (max-width: 1330px) {
+    .sidebar{
+        top: 0;
+        height: 100vh;
+        transform: translateX(-100%);
+        
+    }
+    .close{
+        position: absolute;
+        z-index:1000;
+        top: 2rem;
+        color: #000;
+        background-color: var(--white-color);
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        opacity: 0;
+        transition: .3s ease-in-out;
+    }
+    .close.active{
+        opacity: 1;
+    }
+    .sidebar.active{
+        transform: translateX(0);
+    }
+    .menu-icon{
+        display: block;
+    }
+    .header-home .title-2{
+        flex: unset;
+    }
+}
+@media (max-width: 768px){
+    .footer-main .footer-content{
+        flex-direction: column-reverse;
+    }
 }

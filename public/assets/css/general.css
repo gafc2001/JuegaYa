@@ -55,9 +55,7 @@ body{
     color: var(--white-color);
     background-color: var(--bg-primary);
     font-family: var(--font-family);
-    padding-bottom: 10rem;
-    
-    
+    padding-bottom: 6rem;
 }
 body::after{
     transition: 1s;

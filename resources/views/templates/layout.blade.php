@@ -18,10 +18,12 @@
 </head>
 
 <body>
-    
+    @yield('sidebar')
+
     <div class="parent">
         @yield('content')
     </div>
+    
     @yield('form')
     @if(Route::current()->getName() != 'login')
     <nav class="navbar navbar-fixed-bottom">
