@@ -1,10 +1,17 @@
 window.addEventListener("DOMContentLoaded",function(){
-    const editButton = document.getElementById("edit-profile");
+    // const editButton = document.getElementById("edit-profile");
     const profilePicture = document.getElementById("profile_picture");
     const imgProfile = document.getElementById("current-img-picture");
-    const editProfile = () => {
-        console.log("click");
-    };
+    const selectInput = document.getElementsByClassName("select");
+    const gender =document.getElementById("gender");
+    const sport =document.getElementById("sport");
+    const district = document.getElementById("district");
+    console.log(district);
+
+
+    // const editProfile = () => {
+    //     console.log("click");
+    // };
     const onInputImageChange = (e) => {
         console.log('change');
         console.log(profilePicture.files);
@@ -15,5 +22,8 @@ window.addEventListener("DOMContentLoaded",function(){
     }
 
     profilePicture.addEventListener('change', onInputImageChange);
-    editButton.addEventListener("click",editProfile);
+
+    NiceSelect.bind(gender, { searchable: true })
+    NiceSelect.bind(sport, { searchable: true })
+    NiceSelect.bind(district, { searchable: true })    
 });

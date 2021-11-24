@@ -36,7 +36,8 @@ class MatchController extends Controller
     public function create()
     {
         $districts = District::pluck('district','id');
-        $sports = Sport::pluck('sport','id');
+        // $sports = Sport::pluck('sport','id');
+        $sports = Sport::where('sport','Futbol')->pluck('sport','id');
         return view('user.match.create',compact('districts','sports'));
     }
 

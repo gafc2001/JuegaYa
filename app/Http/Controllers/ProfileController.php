@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\District;
 use App\Models\Profile;
 use App\Models\Recomendation;
+use App\Models\Sport;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,7 +35,14 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('user.profile.create');
+        $genders = ['Hombre'=> 'Hombre',
+                    'Mujer'=> 'Mujer',
+                    'Prefiero no decirlo'=>'Prefiero no decirlo'];
+        $sports = Sport::pluck('sport','id');
+        $districts = District::pluck('district','id');
+        $user = new User();
+        $profile = new Profile();
+        return view('user.profile.create',compact('genders','sports','user','profile','districts'));
     }
 
     /**
@@ -44,8 +53,6 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        // return dd($request->all());
-        
         $file = $request->file('profile_picture');
         $file_name = $file->hashName();
         $upload_success = Storage::disk('public')->put('img/profile',$file);
@@ -56,7 +63,8 @@ class ProfileController extends Controller
             'age' => $request->age,
             'high' => $request->high,
             'time_playing' => $request->time_playing,
-            'favorite_sport' => $request->favorite_sport,
+            'sport_id' => $request->sport_id,
+            'district_id' => $request->district_id,
             'gender' => $request->gender,
             'profile_picture' => $file_name,
         ]);
@@ -85,7 +93,13 @@ class ProfileController extends Controller
     {
         // $user = User::find($id);
         $user = User::find($id);
-        return view('user.profile.edit',compact('user'));
+        $profile = $user->profile();
+        $genders = ['Hombre'=> 'Hombre',
+                    'Mujer'=> 'Mujer',
+                    'Prefiero no decirlo'=>'Prefiero no decirlo'];
+        $sports = Sport::pluck('sport','id');
+        $districts = District::pluck('district','id');
+        return view('user.profile.edit',compact('user','profile','genders','sports','districts'));
     }
 
     /**
@@ -120,7 +134,8 @@ class ProfileController extends Controller
             'age'=> $request->age,
             'high'=> $request->high,
             'time_playing'=> $request->time_playing,
-            'favorite_sport'=> $request->favorite_sport,
+            'sport_id' => $request->sport_id,
+            'district_id' => $request->district_id,
             'profile_picture'=> $file_name,
             'gender'=> $request->gender,
         ]);

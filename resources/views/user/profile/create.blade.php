@@ -48,6 +48,8 @@
                     <input type="text" placeholder="Tu altura" class="input" name="high" id="high" required>
                 </div>
             </div>
+        </div>
+        <div class="form-row">
             <div class="form-group">
                 <label for="time_playing" class="title-3 mb-2">Tiempo jugando</label>
                 <div class="input-container">
@@ -60,12 +62,24 @@
         </div>
         <div class="form-row">
             <div class="form-group">
+                <label for="players" class="title-3 mb-2">Distrito</label>
+                <div class="input-container">
+                    <span class="input-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </span>
+                    {{Form::select('district_id',$districts,$profile->district_id,array('class'=>'select','placeholder'=>'Seleccione distrito','id'=>'district','required'))}}
+                </div>
+            </div>
+        </div>
+            
+        <div class="form-row">
+            <div class="form-group">
                 <label for="favorite_sport" class="title-3 mb-2">Deporte Favorito</label>
                 <div class="input-container">
                     <span class="input-icon">
                         <i class="far fa-futbol"></i>
                     </span>
-                    <input type="text" placeholder="Deporte favorito" class="input" name="favorite_sport" id="favorite_sport" required>
+                    {{Form::select('sport_id',$sports,$profile->sport_id,array('class'=>'select','placeholder'=>'Seleccione su deporte favorito','id'=>'sport','required'))}}
                 </div>
             </div>
             <div class="form-group">
@@ -74,7 +88,7 @@
                     <span class="input-icon">
                         <i class="fas fa-venus-mars"></i>
                     </span>
-                    <input type="text" placeholder="Tu genero" class="input" name="gender" id="gender" required>
+                    {{Form::select('gender',$genders,$profile->gender,array('class'=>'select','placeholder'=>'Seleccione su genero','id'=>'gender','required'))}}
                 </div>
             </div>
         </div>
@@ -104,9 +118,11 @@
 
 
 @section('css')
+<link rel="stylesheet" href="{{asset('assets/css/nice-select2.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
 @endsection
 
 @section('js')
+<script src="{{asset('assets/js/nice-select2.js')}}"></script>
 <script src="{{asset('assets/js/profile.js')}}"></script>
 @endsection

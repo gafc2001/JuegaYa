@@ -45,12 +45,21 @@
         </div>
         <div class="profile-values">
             <p class="profile-label text">Deporte</p>
-            <p class="profile-value text">{{auth()->user()->profile()->favorite_sport}}</p>
+            <p class="profile-value text">{{auth()->user()->profile()->sport()}}</p>
         </div>
     </div>
     <div class="profile-item">
         <div class="profile-icon center">
             <i class="fas fa-venus-mars"></i>
+        </div>
+        <div class="profile-values">
+            <p class="profile-label text">Distrito</p>
+            <p class="profile-value text">{{auth()->user()->profile()->district()}}</p>
+        </div>
+    </div>
+    <div class="profile-item">
+        <div class="profile-icon center">
+            <i class="fas fa-house-user"></i>
         </div>
         <div class="profile-values">
             <p class="profile-label text">Genero</p>

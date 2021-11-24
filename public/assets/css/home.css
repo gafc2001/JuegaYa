@@ -83,6 +83,7 @@
 }
 .matches{
     padding-top: 3rem;
+    min-height: 100vh;
 }
 .match{
     border-bottom: 1px solid var(--grey-color);

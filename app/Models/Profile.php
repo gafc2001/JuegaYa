@@ -16,9 +16,10 @@ class Profile extends Model
         'age',
         'high',
         'time_playing',
-        'favorite_sport',
         'profile_picture',
         'gender',
+        'sport_id',
+        'district_id'
     ];
     protected $casts = [
         'time_playing' => 'date:Y-m-d',
@@ -31,5 +32,12 @@ class Profile extends Model
         $now = Carbon::now();
         $time = Carbon::createFromDate($this->time_playing);
         return $time->diffForHumans($now);
+    }
+
+    public function district(){
+        return $this->belongsTo(District::class)->first()->district;
+    }
+    public function sport(){
+        return $this->belongsTo(Sport::class)->first()->sport;
     }
 }

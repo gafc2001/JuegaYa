@@ -62,9 +62,9 @@
             <i class="fas fa-bars"></i>
         </div>
         <h1 class="title-2 t-center">Partidos</h1>
-        <div class="notification">
+        <!-- <div class="notification">
             <span class="num-noti t-center">2</span>
-        </div>
+        </div> -->
     </div>
 </header>
 <main class="section m-y container matches">
