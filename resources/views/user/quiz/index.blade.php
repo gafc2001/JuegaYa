@@ -6,7 +6,7 @@
 @section('content')
 <main class="content">
     @foreach ($questions as $question)
-    <section class="section container question-container" id="answer{{$loop->index}}">
+    <section class="section container question-container" data-type="{{$question->type_question}}"  id="answer{{$loop->index}}">
         <header class="header-quiz">
             <h1 class="title-2">{{$question->question}}</h1>
             <span class="header-desc">Elige una opcion </span>
@@ -16,37 +16,48 @@
                 @switch($question->type_question)
                     @case("SPORT")
                         @foreach ($sports as $sport )
-                        <li class="answer">{{$sport->sport}}</li>
+                        <li class="answer enum" data-id="{{$sport->id}}">{{$sport->sport}}</li>
                         @endforeach
                         @break
                     @case("POSITION")
-                        <li class="answer">Delantero</li>
-                        <li class="answer">Defensa</li>
-                        <li class="answer">Arquero</li>
-                        <li class="answer">Volante</li>
+                        <li class="answer enum">Delantero</li>
+                        <li class="answer enum">Defensa</li>
+                        <li class="answer enum">Arquero</li>
+                        <li class="answer enum">Volante</li>
                         @break
                     @case("TIME_PLAYING")
-                        <li class="answer">Mas 1 año</li>
-                        <li class="answer">Mas 5 años</li>
-                        <li class="answer">Mas 10 años</li>
-                        <li class="answer">Mas 20 años</li>
+                        <li class="answer">
+                            <div class="form-group">
+                                <div class="input-container">
+                                    <span class="input-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </span>
+                                    <input type="date" class="input date" id="time_playing">
+                                </div>
+                            </div>
+                        </li>
                         @break
                     @case("HOBBIE")
                         @foreach ($hobbies as $hobbie )
-                        <li class="answer">{{$hobbie->hobbie}}</li>
+                        <li class="answer enum" data-id="{{$hobbie->id}}">{{$hobbie->hobbie}}</li>
                         @endforeach
                         @break
                     @case("GENDER")
-                        <li class="answer">Masculino</li>
-                        <li class="answer">Femenino</li>
-                        <li class="answer">Prefiero no decirlo</li>
+                        <li class="answer enum">Masculino</li>
+                        <li class="answer enum">Femenino</li>
+                        <li class="answer enum">Prefiero no decirlo</li>
                         @break
                     @case("AGE")
-                        <li class="answer">Mas 10 años</li>
-                        <li class="answer">Mas 15 años</li>
-                        <li class="answer">Mas 20 años</li>
-                        <li class="answer">Mas 30 años</li>
-                        <li class="answer">Mas 40 años</li>
+                        <li class="answer">
+                            <div class="form-group">
+                                <div class="input-container">
+                                    <span class="input-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </span>
+                                    <input type="date" class="input date" id="age">
+                                </div>
+                            </div>
+                        </li>
                         @break
                 @endswitch
             </ul>

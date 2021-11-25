@@ -9,8 +9,13 @@ window.addEventListener("DOMContentLoaded",function(){
             answerItem.classList.remove("selected");
         }
         e.target.classList.add("selected");
-        let question =  e.target.closest(".question-container").getAttribute("id");
-        data[question] = e.target.innerHTML;
+        let question =  e.target.closest(".question-container").getAttribute("data-type");
+        
+        if(e.target.getAttribute("data-id")){
+            data[question] = e.target.getAttribute("data-id");
+        }else{
+            data[question] = e.target.innerHTML;
+        }
         console.log(data);
     }
 

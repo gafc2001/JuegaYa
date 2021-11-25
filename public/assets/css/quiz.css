@@ -27,7 +27,7 @@ body{
     padding-left: 4rem;
     counter-increment: enumarate;
 }
-.answer::before{
+.answer.enum::before{
     content: counter(enumarate) ".";
     display: inline-block;
     width: 1rem;
