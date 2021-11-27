@@ -50,6 +50,7 @@ class MatchController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(MatchGame::$validation,MatchGame::$validation_msg);
         MatchGame::insert([
             'host_user_id' => Auth::id(),
             'match_status_id' => MatchStatus::where('status','Previa')->first()->id,

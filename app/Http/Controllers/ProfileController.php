@@ -54,6 +54,7 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(Profile::$validation);
         $file = $request->file('profile_picture');
         $file_name = $file->hashName();
         $upload_success = Storage::disk('public')->put('img/profile',$file);
@@ -92,7 +93,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        // $user = User::find($id);
+        
         $user = User::find($id);
         $profile = $user->profile();
         $genders = ['Hombre'=> 'Hombre',
@@ -112,6 +113,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate(Profile::$validation);
         $profile = User::find($id)->profile();
         $file = $request->file('profile_picture');
         $file_name = "";

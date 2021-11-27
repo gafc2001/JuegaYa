@@ -303,6 +303,11 @@ img{
     opacity: 0.5;
     cursor: not-allowed;
 }
+.btn-error{
+    border:1px solid var(--red-color);
+    color: var(--red-color);
+    flex: 2;
+}
 .form-row{
     display:flex;
     flex-wrap: wrap;

@@ -10,6 +10,19 @@ class MatchGame extends Model
 {
     protected $table = "matches";
     
+    public static $validation = [
+        'sport_id' => 'required',
+        'district_id' => 'required',
+        'date' => 'required',
+        'time' => 'required',
+        'max_participants' => 'required',
+        'latitude' => 'required',
+        'longitude' => 'required',
+    ];
+    public static $validation_msg = [
+        'latitude.required' => 'Active su ubicacion',
+        'latitude.required' => 'Active su ubicacion',
+    ];
 
     public function participants(){
         return $this->hasMany(Participant::class,'match_id');

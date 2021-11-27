@@ -26,6 +26,16 @@ class Profile extends Model
         'high' => 'double',
         'age' => 'date:Y-m-d'
     ];
+    public static $validation = ['user_id',
+    'first_name'  => 'required',
+    'last_name'  => 'required',
+    'age'  => 'required',
+    'high'  => 'required',
+    'time_playing'  => 'required',
+    'gender'  => 'required',
+    'sport_id'  => 'required',
+    'district_id'  => 'required',
+    ];
     public function getFullName(){
         if(is_null($this->first_name) && is_null($this->first_name)){
             return "No definido";
