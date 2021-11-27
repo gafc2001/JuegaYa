@@ -6,6 +6,9 @@ window.addEventListener("DOMContentLoaded",function(){
     const closeMenu = document.getElementById("close");
     const sidebar = document.getElementById("sidebar");
 
+    let url = new URLSearchParams(window.location.search);
+    let id = url.get('district');
+    location.href = `#${id}`;
     closeMenu.style.left = sidebar.offsetWidth+10+ "px";
     const displayDistricts =(display) =>{
         Array.from(districts).forEach(e => e.style.display = display);

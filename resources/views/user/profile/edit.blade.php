@@ -49,12 +49,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="high" class="title-3 mb-2">Altura}}</label>
+                <label for="high" class="title-3 mb-2">Altura</label>
                 <div class="input-container">
                     <span class="input-icon">
                         <i class="fas fa-ruler-vertical"></i>
                     </span>
-                    {{Form::number('high',str_replace(',','.',$user->profile()->high),array('class'=>'input','id','high','placeholder'=>'Tu altura','required'))}}
+                    {{Form::number('high',str_replace(',','.',$user->profile()->high),array('class'=>'input','id','high','placeholder'=>'Tu altura','step'=>"0.01",'required'))}}
                     
                 </div>
             </div>

@@ -24,20 +24,41 @@ class Profile extends Model
     protected $casts = [
         'time_playing' => 'date:Y-m-d',
         'high' => 'double',
+        'age' => 'date:Y-m-d'
     ];
     public function getFullName(){
-        return "{$this->first_name} {$this->last_name}";
+        if(is_null($this->first_name) && is_null($this->first_name)){
+            return "No definido";
+        }
+        else{
+            return "{$this->first_name} {$this->last_name}";
+        }
     }
     public function getTimePlaying(){
+        Carbon::setLocale('es');
         $now = Carbon::now();
         $time = Carbon::createFromDate($this->time_playing);
         return $time->diffForHumans($now);
     }
 
     public function district(){
-        return $this->belongsTo(District::class)->first()->district;
+        if(is_null($this->belongsTo(District::class)->first())){
+            return "No definido";
+        }else{
+            return $this->belongsTo(District::class)->first()->district;
+        }
     }
     public function sport(){
-        return $this->belongsTo(Sport::class)->first()->sport;
+        if(is_null($this->belongsTo(Sport::class)->first())){
+            return "No definido";
+        }else{
+            return $this->belongsTo(Sport::class)->first()->sport;
+        }
+    }
+    public function getAge(){
+        Carbon::setLocale('es');
+        $now = Carbon::now();
+        $date = $this->age;
+        return $date->diffInYears($now) . " años";
     }
 }

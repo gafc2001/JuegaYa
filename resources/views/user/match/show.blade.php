@@ -52,17 +52,14 @@
         <h3>Organizador</h3>
 
         <div class="host match-player m-y">
+            <img src="{{asset('assets/img/profile/'.$match->host()->getProfilePicture())}}" alt="profile">
             @if(!is_null($match->host()->profile()))
-            <img src="{{asset('assets/img/profile/'.$match->host()->profile()->profile_picture)}}" alt="profile">
                 <span>{{$match->host()->profile()->getFullName()}}</span>
             @else
-                <img src="{{ asset('assets/img/profile/default-profile.png')}}" alt="profile">
                 <span>{{$match->host()->email}}</span>
             @endif
         </div>
-        <!-- <div class="match-status in-game text-small mb-2">En juego</div> -->
-        <!-- <div class="match-status pregame text-small mb-2">Por comenzar</div> -->
-        <div class="match-status ended text-small mb-2">{{$match->status()}}</div>
+        <div class="match-status {{$match->getClass()}} text-small mb-2">{{$match->getStatus()}}</div>
         <div class="date match-detail">
             <i class="fas fa-calendar-alt"></i>
             <span>{{$match->date()}}</span>
@@ -103,12 +100,10 @@
 
 
 @if($match->host_user_id != auth()->id())
-
-
-
-
-
 <section class="section container m-y">
+    @if($match->getClass() == "ended")
+        <div class="message error">El partido ya termino</div>
+    @else
     {{--Show button request if not host--}}    
     @if(auth()->user()->participation($match->id) == null)
         <form action="{{route('match.update',$match->id)}}"  role="form" method="POST">
@@ -133,9 +128,7 @@
                 <div class="message error"><i class="fas fa-times-circle"></i> RECHAZADO</div>
                 @break
         @endswitch
-        
-    
-    
+        @endif
     @endif
 </section>
 @endif

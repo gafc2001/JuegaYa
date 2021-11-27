@@ -32,7 +32,7 @@ html{
     --warning-color :#ff9500;
     --gradient-warning-color : #7c391a;
 
-    --error-color:#f3052d;
+    --error-color:#ff4242;
     --gradient-error-color : #462044;
 
     --gradient-orange-color : linear-gradient(137.49deg, #F4A58A 0%, #ED6B4E 96.01%);
@@ -133,9 +133,12 @@ body.active::after{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    
+}
+.parent.home{
     justify-content: space-between;
 }
-.parent > :last-child{
+.parent.home > :last-child{
     padding-bottom: 10rem;
 }
 button{

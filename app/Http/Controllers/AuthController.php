@@ -19,15 +19,18 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
     public function signin(Request $request){
-        $credentials = $request->validate(User::$credentials);
+        $credentials = $request->validate(User::$signin);
         if(Auth::attempt($credentials)){
-            // return redirect(RouteServiceProvider::HOME);
-            return redirect()->route('quiz.index');
+            if(!is_null(Auth::user()->profile()))
+                    return redirect(RouteServiceProvider::HOME);
+            else{
+                return redirect()->route('quiz.index');
+            }
         }
         return redirect()->route('login')->withErrors(User::$signin_error);
     }
     public function signup(Request $request){
-        $request->validate(User::$credentials);
+        $request->validate(User::$signup,User::$signup_msg);
 
         User::insert([
             'email' => $request->email,

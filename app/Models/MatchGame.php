@@ -34,7 +34,34 @@ class MatchGame extends Model
         return Carbon::parse($this->date_time)->format('g:i A');
     }
     
-
+    public function getStatus(){
+        $date = Carbon::parse($this->date_time);
+        $now = Carbon::now();
+        $diffInHours = $date->diffInHours($now);
+        $isPast = $date->isPast();
+        if($isPast){
+            if($diffInHours > 1.5){
+                $this->match_status_id= 3;
+            }else{
+                $this->match_status_id= 2;
+            }
+        }
+        $this->save();
+        return $this->status();
+    }
+    public function getClass(){
+        switch($this->status()){
+            case "Previa":
+                return "pre-game";
+                break;
+            case "En juego";
+                return "in-game";
+                break;
+            case "Finalizado";
+                return "ended";
+                break;
+        }
+    }
     public function participantsAcepted(){
         return $this->participants()->where('status','ACEPTADO');
     }

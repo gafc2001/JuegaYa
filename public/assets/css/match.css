@@ -87,10 +87,10 @@
     display: inline-block;
 }
 .match-status.in-game{
-    background-color: var(--green-color);
+    background-color: var(--warning-color);
 }
-.match-status.pregame{
-    background-color: var(--blue-color);
+.match-status.pre-game{
+    background-color: var(--green-color);
 }
 .match-status.ended{
     background-color: var(--red-color);

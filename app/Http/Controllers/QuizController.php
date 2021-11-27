@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hobbie;
+use App\Models\Profile;
 use App\Models\Question;
 use App\Models\Sport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
@@ -40,7 +42,19 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        return dd($request->all());
+        $data = json_decode($request->getContent());
+        $user = Auth::user();
+        $profile = Profile::insert([
+            'user_id' => $user->id,
+            'age' => $data->AGE,
+            'gender' => $data->GENDER,
+            'hobbie_id' => $data->HOBBIE,
+            'preferred_position' => $data->POSITION,
+            'time_playing' => $data->TIME_PLAYING,
+            'sport_id' => $data->SPORT,
+        ]);
+
+        return response()->json(['message'=>"Profile saved"]);
     }
 
     /**

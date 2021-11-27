@@ -19,7 +19,7 @@ class ProfileMiddleware
     {
         if(!is_null(Auth::user())){
             if(is_null(Auth::user()->profile())){
-                return redirect()->route('profile.create');
+                return redirect()->route('quiz.index');
             }
         }
         return $next($request);

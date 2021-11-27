@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="//code-eu1.jivosite.com/widget/xtLtNTTsCu" async></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +19,7 @@
 <body>
     @yield('sidebar')
 
-    <div class="parent">
+    <div class="parent @yield('class')">
         @yield('content')
     </div>
     
@@ -28,7 +27,7 @@
     @if(Route::current()->getName() != 'login')
     <nav class="navbar navbar-fixed-bottom">
         <ul class="navbar-list">
-
+            <!-- Home -->
             <a href="{{route('home')}}" class="link">
                 <li class="nav-item">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,21 +35,15 @@
                     </svg>
                 </li>
             </a>
-            <a href="{{route('home')}}" class="link">
-                <li class="nav-item">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6115 2C6.30323 2 2 6.20819 2 11.3993C2 16.5903 6.30323 20.7985 11.6115 20.7985C13.8819 20.7985 15.9684 20.0287 17.613 18.7415L20.7371 21.7886L20.8202 21.8586C21.1102 22.0685 21.5214 22.0446 21.7839 21.7873C22.0726 21.5043 22.072 21.0459 21.7825 20.7636L18.6952 17.7523C20.2649 16.0794 21.2231 13.8487 21.2231 11.3993C21.2231 6.20819 16.9198 2 11.6115 2ZM11.6115 3.44774C16.1022 3.44774 19.7426 7.00776 19.7426 11.3993C19.7426 15.7908 16.1022 19.3508 11.6115 19.3508C7.12086 19.3508 3.48044 15.7908 3.48044 11.3993C3.48044 7.00776 7.12086 3.44774 11.6115 3.44774Z" fill="#200E32" />
-                    </svg>
-                </li>
-            </a>
-            <a href="{{route('home')}}" class="link">
-
+            <!-- Matches -->
+            <!-- <a href="{{-- route('home') --}}" class="link">
                 <li class="nav-item">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3588 2H7.6412C4.25586 2 2 4.4199 2 7.89317V16.1068C2 19.5833 4.24992 22 7.6412 22H16.3588C19.7501 22 22 19.5833 22 16.1068V7.89317C22 4.41665 19.7501 2 16.3588 2ZM7.6412 3.39535H16.3588C18.9563 3.39535 20.6047 5.16587 20.6047 7.89317V16.1068C20.6047 18.8341 18.9563 20.6047 16.3588 20.6047H7.6412C5.04372 20.6047 3.39535 18.8341 3.39535 16.1068V7.89317C3.39535 5.16949 5.04923 3.39535 7.6412 3.39535ZM12.7267 7.17893C12.6805 6.8384 12.3886 6.57593 12.0354 6.57593C11.6501 6.57593 11.3378 6.88829 11.3378 7.2736V16.7087L11.3441 16.8034C11.3903 17.1439 11.6822 17.4064 12.0354 17.4064C12.4208 17.4064 12.7331 17.094 12.7331 16.7087V7.2736L12.7267 7.17893ZM8.38566 10.2325C8.33946 9.89197 8.04756 9.6295 7.69435 9.6295C7.30904 9.6295 6.99668 9.94186 6.99668 10.3272V16.7087L7.00305 16.8034C7.04924 17.1439 7.34115 17.4064 7.69435 17.4064C8.07967 17.4064 8.39203 17.094 8.39203 16.7087V10.3272L8.38566 10.2325ZM16.3056 13.0017C16.6589 13.0017 16.9508 13.2642 16.997 13.6047L17.0033 13.6994V16.7087C17.0033 17.094 16.691 17.4064 16.3056 17.4064C15.9524 17.4064 15.6605 17.1439 15.6143 16.8034L15.608 16.7087V13.6994C15.608 13.3141 15.9203 13.0017 16.3056 13.0017Z" fill="#200E32" />
                     </svg>
                 </li>
-            </a>
+            </a> -->
+            <!-- Profile -->
             <a href="{{route('profile.index')}}" class="link">
                 <li class="nav-item">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,6 +51,7 @@
                     </svg>
                 </li>
             </a>
+            <!-- Sign out -->
             @auth
             <form action="{{route('logout')}}" method="POST">
                 @csrf
@@ -79,8 +73,7 @@
 
     <div class="background"></div>
 
-    
-    
+    <script src="//code-eu1.jivosite.com/widget/xtLtNTTsCu" async></script>
     <script src="https://kit.fontawesome.com/0dadf959e1.js" crossorigin="anonymous"></script>
     @yield('js')
 </body>

@@ -18,18 +18,19 @@ class CreateProfilesTable extends Migration
             $table->unsignedBigInteger("user_id")->unique();
             $table->unsignedBigInteger("sport_id")->nullable();
             $table->unsignedBigInteger("district_id")->nullable();
-            $table->string('hobbies')->nullable();
-            $table->string("first_name");
-            $table->string("last_name");
-            $table->integer("age");
-            $table->double("high");
-            $table->date("time_playing");
+            $table->unsignedBigInteger('hobbie_id')->nullable();
+            $table->string("first_name")->nullable();
+            $table->string("last_name")->nullable();
+            $table->date("age")->nullable();
+            $table->double("high")->nullable();
+            $table->date("time_playing")->nullable();
             $table->string("preferred_position")->nullable();
             $table->string("profile_picture")->nullable();
-            $table->enum("gender",["Hombre","Mujer","Prefiero no decirlo"]);
+            $table->enum("gender",["Hombre","Mujer","Prefiero no decirlo"])->nullable();
             $table->foreign("user_id")->references("id")->on("users");
             $table->foreign("sport_id")->references("id")->on("sports");
             $table->foreign("district_id")->references("id")->on("districts");
+            $table->foreign("hobbie_id")->references("id")->on("hobbies");
             $table->timestamps();
         });
     }

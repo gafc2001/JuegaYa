@@ -21,7 +21,8 @@ class ProfileController extends Controller
      */
     public function __construct(){
         $this->middleware('auth');
-        $this->middleware('profile')->only('index');
+        $this->middleware('profile');
+        // $this->middleware('profile')->only('index');
     }
     public function index()
     {

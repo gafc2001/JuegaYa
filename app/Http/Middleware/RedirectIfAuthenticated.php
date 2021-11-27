@@ -23,8 +23,11 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect()->route('quiz.index');
-                return redirect(RouteServiceProvider::HOME);
+                if(!is_null(Auth::user()->profile()))
+                    return redirect(RouteServiceProvider::HOME);
+                else{
+                    return redirect()->route('quiz.index');
+                }
             }
         }
 

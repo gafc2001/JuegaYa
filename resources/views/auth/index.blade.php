@@ -10,14 +10,12 @@
         </div>
     </section>
     <section class="section container s">
-        <h1 class="title m-y">
+        <h1 class="title m-y center">
             Juega Ya
-            <img src="{{asset('assets/img/categoria/soccer.png')}}" width="30" alt="ball">
+            <img src="{{asset('favicon.ico')}}" width="60" alt="ball">
         </h1>
-        <p class="text-light m-y">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium tenetur unde
-            debitis deleniti, dolor
-            voluptatibus sapiente! In accusamus inventore veniam quam, sed doloremque deserunt unde? Ducimus quis
-            praesentium nesciunt illo.</p>
+        <p class="text-light m-y">JUEGA YA es un aplicativo digital que te ayudara a organizar encuentros deportivos con tus
+        amigos o personas nuevas que quieran practicar el mismo deporte.</p>
         <div class="btn-container m-y">
             <div class="btn btn-primary" id="sign-in">
                 Ingresar

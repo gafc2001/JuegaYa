@@ -1,6 +1,5 @@
 <header class="profile-header container">
     <div class="profile-image center">
-        
         <div class="img-container">
             <img src="{{asset('assets/img/profile/'.$user->getProfilePicture())}}" alt="profile">
             @if(auth()->id() == $user->id)    
@@ -26,8 +25,12 @@
         </p>
     </div>
     <nav class="btn-container btn-profile">
-        <a href="{{route('profile.index')}}" class="btn btn-secondary">Mi perfil</a>
-        <a href="#" class="btn btn-transparent">Actividad</a>
-        <a href="{{route('profile.comment',$user->id)}}" class="btn btn-transparent">Comentarios</a>
+        @if(auth()->id() == $user->id)
+            <a href="{{route('profile.index')}}" class="btn {{Request::routeIs('profile.index')?'btn-secondary':'btn-transparent'}}">Mi perfil</a>
+        @else
+            <a href="{{route('profile.show',$user->id)}}" class="btn {{Request::routeIs('profile.show')?'btn-secondary':'btn-transparent'}}">Perfil</a>
+        @endif    
+        <!-- <a href="#" class="btn  {{-- Request::routeIs('profile.comment')?'btn-secondary':'btn-transparent' --}}">Actividad</a> -->
+        <a href="{{route('profile.comment',$user->id)}}" class="btn  {{Request::routeIs('profile.comment')?'btn-secondary':'btn-transparent'}}">Comentarios</a>
     </nav>
 </header>

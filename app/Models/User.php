@@ -17,10 +17,17 @@ class User extends Authenticatable
      *
      * @var string[]
      */
-    public static $credentials = [
+    public static $signin = [
         'email' => ['required','email'],
         'password' => ['required'],
     ];
+    public static $signup = [
+        'email' => ['required','email','unique:users'],
+        'password' => ['required'],
+    ];
+    public static $signup_msg = [
+        'unique.users' => 'El correo ya existe'
+    ] ;
     public static $signin_error = [
         'message' => 'Tu correo o contraseña son incorrectos'
     ];

@@ -1,5 +1,6 @@
 @extends('templates.layout')
 
+@section('class','home')
 @section('sidebar')
 <div class="close center title-2" id="close"><i class="fas fa-times"></i></div>
 <sidebar class="sidebar" id="sidebar">
@@ -19,7 +20,7 @@
         </li>
         @foreach ($districts as $district)
 
-        <li class="district {{request()->get('district')==$district->id?'active':''}}">
+        <li class="district {{request()->get('district')==$district->id?'active':''}}" id="{{$district->id}}">
             <a href="{{route('home','district='.$district->id)}}">{{$district->district}}</a>
         </li>
         @endforeach
@@ -40,7 +41,7 @@
             </ul>
         </div>
         <div class="section book">
-            <h4 class="title-3 mb-1 t-center">Libro de reclamaciones</h4>
+            <h4 class="text mb-1 t-center">Libro de reclamaciones</h4>
             <div class="center">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                     <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
@@ -78,7 +79,7 @@
                 <header class="match-info">
                     @if(!is_null($match->host()->profile()))
                     <div class="match-profile">
-                        <img src="{{asset('assets/img/profile/'.$match->host()->profile()->profile_picture)}}" alt="profile">
+                        <img src="{{asset('assets/img/profile/'.$match->host()->getProfilePicture())}}" alt="profile">
                     </div>
                     <p class="text">{{$match->host()->profile()->getFullName()}}</p>
                     @else
@@ -106,7 +107,9 @@
                                 <span>{{$match->date()}} </span>
                                 <span> {{$match->time()}}</span>
                             </div>
-                            <div class="match-status center">{{$match->status()}}<span class="match-clip"></span></div>
+                            <div class="match-status center">{{$match->getStatus()}}
+                                <span class="match-clip {{$match->getClass()}}"></span>
+                            </div>
                         </div>
                     </div>
 

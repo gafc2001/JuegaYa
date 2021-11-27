@@ -18,7 +18,7 @@
         </div>
         <div class="profile-values">
             <p class="profile-label text">Edad</p>
-            <p class="profile-value text">{{auth()->user()->profile()->age}}</p>
+            <p class="profile-value text">{{auth()->user()->profile()->getAge()}}</p>
         </div>
     </div>
     <div class="profile-item">
@@ -64,6 +64,15 @@
         <div class="profile-values">
             <p class="profile-label text">Genero</p>
             <p class="profile-value text">{{auth()->user()->profile()->gender}}</p>
+        </div>
+    </div>
+    <div class="profile-item">
+        <div class="profile-icon center">
+            <i class="fas fa-tshirt"></i>
+        </div>
+        <div class="profile-values">
+            <p class="profile-label text">Posicion adecuada</p>
+            <p class="profile-value text">{{auth()->user()->profile()->preferred_position}}</p>
         </div>
     </div>
 </main>

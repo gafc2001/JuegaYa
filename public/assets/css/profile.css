@@ -120,3 +120,17 @@
     padding: .5rem 1.5rem;
     height: fit-content;
 }
+@media (max-width: 573px){
+    #comment-content{
+        min-height:5.8rem;
+    }
+    .btn-send .btn-text{
+        display: none;
+    }
+
+}
+@media (max-width: 380px){
+    .create-comment-img{
+        display: none;
+    }
+}

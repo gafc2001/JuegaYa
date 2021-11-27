@@ -162,10 +162,19 @@
 .match-clip{
     margin-left: .3rem;
     display: inline-block;
-    background-color: var(--green-color);
+   
     width: 1rem;
     height: 1rem;
     border-radius:2rem;
+}
+.match-clip.pre-game{
+    background-color: var(--green-color);
+}
+.match-clip.in-game{
+    background-color: var(--warning-color);
+}
+.match-clip.ended{
+    background-color: var(--red-color);
 }
 
 .book{
@@ -194,20 +203,20 @@
     height: 6.5rem;
     border-radius:6rem;
 }
-.footer-main{
+footer{
     
     padding-bottom: 3rem;
     background-color: var(--bg-primary);
     color: var(--white-color);
 }
-.footer-main .footer-content{
+footer .footer-content{
     display: flex;
     justify-content: space-between;
 }
-.footer-main .book{
+footer .book{
     width: 13rem;
 }
-.footer-main .book svg{
+footer .book svg{
     width: 3rem;
     height: 3rem;
 }
