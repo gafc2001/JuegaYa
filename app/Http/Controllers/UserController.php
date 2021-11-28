@@ -21,7 +21,7 @@ class UserController extends Controller
         if(isset($request->district)){
             $matches = MatchGame::where('district_id',$request->district)->get();
         }else{
-            $matches = MatchGame::all();
+            $matches = MatchGame::orderByDesc('date_time')->get();
         }
         $districts = District::all();
         return view("user.home.index",compact("matches",'districts'));
