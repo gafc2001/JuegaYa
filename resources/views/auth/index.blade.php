@@ -5,14 +5,14 @@
     <section class="section">
         <div class="auth-img container">
             <div class="img-absolute">
-                <img src="{{asset('assets/img/player.png')}}" alt="messi">
+                <img src="{{secure_asset('assets/img/player.png')}}" alt="messi">
             </div>
         </div>
     </section>
     <section class="section container s">
         <h1 class="title m-y center">
             Juega Ya
-            <img src="{{asset('favicon.ico')}}" width="60" alt="ball">
+            <img src="{{secure_asset('favicon.ico')}}" width="60" alt="ball">
         </h1>
         <p class="text-light m-y">JUEGA YA es un aplicativo digital que te ayudara a organizar encuentros deportivos con tus
         amigos o personas nuevas que quieran practicar el mismo deporte.</p>
@@ -34,10 +34,10 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{asset('assets/css/auth.css')}}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/auth.css')}}">
 @endsection
 
 @section('js')
-<script src="{{asset('assets/js/signin.js')}}"></script>
-<script src="{{asset('assets/js/signup.js')}}"></script>
+<script src="{{secure_asset('assets/js/signin.js')}}"></script>
+<script src="{{secure_asset('assets/js/signup.js')}}"></script>
 @endsection

@@ -108,7 +108,7 @@
                 <input type="file" name="profile_picture" id="profile_picture">
             </div>
             <div class="current-picture">
-                <img src="{{asset('assets/img/profile/'.$user->getProfilePicture())}}" alt="profile" id="current-img-picture" required>
+                <img src="{{secure_asset('assets/img/profile/'.$user->getProfilePicture())}}" alt="profile" id="current-img-picture" required>
             </div>
         </div>
         <div class="btn-container column">
@@ -125,11 +125,11 @@
 
 
 @section('css')
-<link rel="stylesheet" href="{{asset('assets/css/nice-select2.css')}}">
-<link rel="stylesheet" href="{{asset('assets/css/profileform.css')}}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/nice-select2.css')}}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/profileform.css')}}">
 @endsection
 
 @section('js')
-<script src="{{asset('assets/js/nice-select2.js')}}"></script>
-<script src="{{asset('assets/js/profile.js')}}"></script>
+<script src="{{secure_asset('assets/js/nice-select2.js')}}"></script>
+<script src="{{secure_asset('assets/js/profile.js')}}"></script>
 @endsection

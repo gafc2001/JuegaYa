@@ -83,7 +83,7 @@ window.addEventListener("DOMContentLoaded",function(){
         data = JSON.parse(data);
         const matchPlayer = 
         `<div class="match-player">
-            <img src="{{asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
+            <img src="{{secure_asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
         </div>`;
         const div = document.createElement('div');
         div.classList.add("match-player");
