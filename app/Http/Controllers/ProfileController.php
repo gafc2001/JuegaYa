@@ -57,7 +57,7 @@ class ProfileController extends Controller
         $request->validate(Profile::$validation);
         $file = $request->file('profile_picture');
         $file_name = $file->hashName();
-        $upload_success = Storage::disk('public')->put('img/profile',$file);
+        $upload_success = Storage::disk('s3')->put('img/profile',$file);
         $profile = Profile::create([
             'user_id' => Auth::id(),
             'first_name' => $request->first_name,
@@ -120,13 +120,13 @@ class ProfileController extends Controller
         //Check if the user send an image
         if(!is_null($file)){
             //Delete the image if exists
-            $exists = Storage::disk('public')->exists('img/profile/'.$profile->profile_picture);
+            $exists = Storage::disk('s3')->exists('img/profile/'.$profile->profile_picture);
             if($exists){
-                $delete = Storage::disk('public')->delete('img/profile/'.$profile->profile_picture);
+                $delete = Storage::disk('s3')->delete('img/profile/'.$profile->profile_picture);
             }
 
             // //Save the image
-            Storage::disk('public')->put('img/profile',$file);
+            Storage::disk('s3')->put('img/profile',$file);
             $file_name = $file->hashName();
         }else{
             $file_name = $profile->profile_picture;

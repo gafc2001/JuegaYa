@@ -87,7 +87,7 @@ window.addEventListener("DOMContentLoaded",function(){
         </div>`;
         const div = document.createElement('div');
         div.classList.add("match-player");
-        div.innerHTML = `<img src="http://127.0.0.1:8000/assets/img/profile/${data.profile}"; alt=""></img>`;
+        div.innerHTML = `<img src="${window.location.protocol + "//" + window.location.host}/assets/img/profile/${data.profile}"; alt=""></img>`;
         matchPlayers.append(div);
         currentPlayers.innerText = matchPlayers.children.length;
     }

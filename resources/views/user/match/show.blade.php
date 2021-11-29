@@ -51,14 +51,16 @@
     <div class="match-details text">
         <h3>Organizador</h3>
 
-        <div class="host match-player m-y">
-            <img src="{{secure_asset('assets/img/profile/'.$match->host()->getProfilePicture())}}" alt="profile">
-            @if(!is_null($match->host()->profile()))
-                <span>{{$match->host()->profile()->getFullName()}}</span>
-            @else
-                <span>{{$match->host()->email}}</span>
-            @endif
-        </div>
+        <a href="{{route('profile.show',$match->host()->id)}}" class="link">
+            <div class="host match-player m-y">
+                <img src="{{secure_asset('assets/img/profile/'.$match->host()->getProfilePicture())}}" alt="profile">
+                @if(!is_null($match->host()->profile()))
+                    <span>{{$match->host()->profile()->getFullName()}}</span>
+                @else
+                    <span>{{$match->host()->email}}</span>
+                @endif
+            </div>
+        </a>
         <div class="match-status {{$match->getClass()}} text-small mb-2">{{$match->getStatus()}}</div>
         <div class="date match-detail">
             <i class="fas fa-calendar-alt"></i>
