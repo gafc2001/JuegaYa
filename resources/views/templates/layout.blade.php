@@ -73,7 +73,7 @@
 
     <div class="background"></div>
 
-    <script src="//code-eu1.jivosite.com/widget/xtLtNTTsCu" async></script>
+    <script src="//code-eu1.jivosite.com/widget/vzJDVglVpX" async></script>
     <script src="https://kit.fontawesome.com/0dadf959e1.js" crossorigin="anonymous"></script>
     @yield('js')
 </body>
