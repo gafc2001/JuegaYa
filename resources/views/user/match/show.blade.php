@@ -139,7 +139,7 @@
 {{--End section content--}}
 
 @section('css')
-<link rel="stylesheet" href="{{asset('assets/css/match.css')}}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/match.css')}}">
 @endsection
 
 @section('js')
@@ -147,5 +147,5 @@
     let csrf_token = "{{csrf_token()}}"
     let url = "{{route('match.status',$match->id)}}"
 </script>
-<script src="{{asset('assets/js/match.js')}}"></script>
+<script src="{{secure_asset('assets/js/match.js')}}"></script>
 @endsection

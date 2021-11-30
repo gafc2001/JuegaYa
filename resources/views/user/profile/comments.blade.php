@@ -72,12 +72,12 @@
 @endsection
 
 @section('css'))
-<link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/profile.css')}}">
 @endsection
 @section('js')
 <script>
 const url = "{{route('profile.saveComment',$user->id)}}";
 const commentUserId = "{{auth()->id()}}";
 </script>
-<script src="{{asset('assets/js/comment.js')}}"></script>
+<script src="{{secure_asset('assets/js/comment.js')}}"></script>
 @endsection

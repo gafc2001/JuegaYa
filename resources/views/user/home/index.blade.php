@@ -84,7 +84,7 @@
                     <p class="text">{{$match->host()->profile()->getFullName()}}</p>
                     @else
                     <div class="match-profile">
-                        <img src="{{asset('assets/img/profile/default-profile.png')}}" alt="profile">
+                        <img src="{{route('image',default-profile.png')}}" alt="profile">
                     </div>
                     <p class="text">{{$match->host()->email}}</p>
                     @endif
@@ -97,7 +97,7 @@
             </a>
             <div class="match-content">
                 <div class="match-icon match-value center">
-                    <img src="{{asset('assets/img/categoria/soccer.png')}}" alt="">
+                    <img src="{{secure_asset('assets/img/categoria/soccer.png')}}" alt="">
                 </div>
                 <div class="match-description match-item text center">
                     <div class="t-center">
@@ -169,9 +169,9 @@
 
 
 @section('css')
-<link rel="stylesheet" href="{{asset('assets/css/home.css')}}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/home.css')}}">
 @endsection
 
 @section('js')
-<script src="{{asset('assets/js/home.js')}}"></script>
+<script src="{{secure_asset('assets/js/home.js')}}"></script>
 @endsection

@@ -1,7 +1,7 @@
 @extends('templates.layout')
 
 @section('css')
-<link rel="stylesheet" href="{{asset('assets/css/quiz.css')}}">
+<link rel="stylesheet" href="{{secure_asset('assets/css/quiz.css')}}">
 @endsection
 @section('content')
 <main class="content">
@@ -79,5 +79,5 @@
     let csrf_token = "{{csrf_token()}}"
     let url = "{{route('quiz.store')}}";
 </script>
-<script src="{{asset('assets/js/quiz.js')}}"></script>
+<script src="{{secure_asset('assets/js/quiz.js')}}"></script>
 @endsection
