@@ -84,7 +84,7 @@
                     <p class="text">{{$match->host()->profile()->getFullName()}}</p>
                     @else
                     <div class="match-profile">
-                        <img src="{{route('image',default-profile.png')}}" alt="profile">
+                        <img src="{{route('image','default-profile.png')}}" alt="profile">
                     </div>
                     <p class="text">{{$match->host()->email}}</p>
                     @endif
