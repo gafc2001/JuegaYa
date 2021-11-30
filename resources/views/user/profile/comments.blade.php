@@ -6,7 +6,7 @@
     @if(auth()->id() != $user->id)    
     <div class="create-comment mb-2">
         <div class="create-comment-img f-start">
-            <img src="{{secure_asset('assets/img/profile/'.auth()->user()->getProfilePicture())}}" alt="profile">
+            <img src="{{route('image',auth()->user()->getProfilePicture())}}" alt="profile">
         </div>
         <div class="create-comment-content">
             <textarea id="comment-content" placeholder="Escribe tu comentario aqui" rows="1"></textarea>
@@ -46,7 +46,7 @@
     <div class="comments">
             @foreach ($user->recomendations()->get() as $comment)
             <div class="comment-item mb-2">
-                <img src="{{secure_asset('assets/img/profile/'.$comment->user()->getProfilePicture())}}" alt="">
+                <img src="{{route('image',$comment->user()->getProfilePicture())}}" alt="">
                 <div class="comment-header">
                     <header class="comment-header title-2">
                         <div class="comment-user">{{$comment->user()->profile()->getFullName()}}</div>
@@ -72,12 +72,12 @@
 @endsection
 
 @section('css'))
-<link rel="stylesheet" href="{{secure_asset('assets/css/profile.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
 @endsection
 @section('js')
 <script>
 const url = "{{route('profile.saveComment',$user->id)}}";
 const commentUserId = "{{auth()->id()}}";
 </script>
-<script src="{{secure_asset('assets/js/comment.js')}}"></script>
+<script src="{{asset('assets/js/comment.js')}}"></script>
 @endsection

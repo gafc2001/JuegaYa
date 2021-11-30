@@ -36,7 +36,7 @@
                     <span class="input-icon">
                         <i class="fas fa-sort-numeric-up-alt"></i>
                     </span>
-                    <input type="text" placeholder="Tu edad" class="input" name="age" id="age" required>
+                    <input type="date" placeholder="Tu edad" class="input" name="age" id="age" required>
                 </div>
             </div>
             <div class="form-group">
@@ -101,7 +101,7 @@
                 <input type="file" name="profile_picture" id="profile_picture">
             </div>
             <div class="current-picture">
-                <img src="{{secure_asset('assets/img/profile/default-profile.png')}}" alt="profile" id="current-img-picture" required>
+                <img src="{{route('image','default-profile.png')}}" alt="profile" id="current-img-picture" required>
             </div>
         </div>
         <div class="btn-container column">
@@ -118,11 +118,11 @@
 
 
 @section('css')
-<link rel="stylesheet" href="{{secure_asset('assets/css/nice-select2.css')}}">
-<link rel="stylesheet" href="{{secure_asset('assets/css/profile.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/nice-select2.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
 @endsection
 
 @section('js')
-<script src="{{secure_asset('assets/js/nice-select2.js')}}"></script>
-<script src="{{secure_asset('assets/js/profile.js')}}"></script>
+<script src="{{asset('assets/js/nice-select2.js')}}"></script>
+<script src="{{asset('assets/js/profile.js')}}"></script>
 @endsection

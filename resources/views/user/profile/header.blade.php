@@ -1,7 +1,7 @@
 <header class="profile-header container">
     <div class="profile-image center">
         <div class="img-container">
-            <img src="{{secure_asset('assets/img/profile/'.$user->getProfilePicture())}}" alt="profile">
+            <img src="{{route('image',$user->getProfilePicture())}}" alt="profile">
             @if(auth()->id() == $user->id)    
             <a href="{{route('profile.edit',$user->id)}}" class="link">
                 <span class="profile-edit" id="edit-profile">

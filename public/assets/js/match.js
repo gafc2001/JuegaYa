@@ -81,13 +81,9 @@ window.addEventListener("DOMContentLoaded",function(){
 
     const updateListOfParticipants = (data) => {
         data = JSON.parse(data);
-        const matchPlayer = 
-        `<div class="match-player">
-            <img src="{{secure_asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
-        </div>`;
         const div = document.createElement('div');
         div.classList.add("match-player");
-        div.innerHTML = `<img src="${window.location.protocol + "//" + window.location.host}/assets/img/profile/${data.profile}"; alt=""></img>`;
+        div.innerHTML = `<img src="${window.location.protocol + "//" + window.location.host}/image/${data.profile}"; alt=""></img>`;
         matchPlayers.append(div);
         currentPlayers.innerText = matchPlayers.children.length;
     }

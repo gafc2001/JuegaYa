@@ -71,9 +71,9 @@
 @endsection
 
 @section('js')
-<script src="{{secure_asset('assets/js/profile.js')}}"></script>
+<script src="{{asset('assets/js/profile.js')}}"></script>
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{secure_asset('assets/css/profile.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
 @endsection

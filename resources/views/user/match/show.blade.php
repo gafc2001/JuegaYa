@@ -30,7 +30,7 @@
                             <a href="{{route('profile.show',$participant->user_id)}}">
                                 <header class="request-header mb-1 link">
                                     <div class="request-player">
-                                        <img src="{{secure_asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
+                                        <img src="{{route('image',$participant->user()->getProfilePicture())}}" alt="">
                                     </div>
                                     <div class="request-name">{{$participant->user()->profile()->getFullName()}}</div>
                                 </header>
@@ -53,7 +53,7 @@
 
         <a href="{{route('profile.show',$match->host()->id)}}" class="link">
             <div class="host match-player m-y">
-                <img src="{{secure_asset('assets/img/profile/'.$match->host()->getProfilePicture())}}" alt="profile">
+                <img src="{{route('image',$match->host()->getProfilePicture())}}" alt="profile">
                 @if(!is_null($match->host()->profile()))
                     <span>{{$match->host()->profile()->getFullName()}}</span>
                 @else
@@ -93,7 +93,7 @@
         @foreach ($match->participantsAcepted()->get() as $participant)
             <a href="{{route('profile.show',$participant->user_id)}}"" class="link">
                 <div class="match-player">
-                    <img src="{{secure_asset('assets/img/profile/'.$participant->user()->getProfilePicture())}}" alt="">
+                    <img src="{{route('image',$participant->user()->getProfilePicture())}}" alt="">
                 </div>
             </a>
         @endforeach
@@ -139,7 +139,7 @@
 {{--End section content--}}
 
 @section('css')
-<link rel="stylesheet" href="{{secure_asset('assets/css/match.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/match.css')}}">
 @endsection
 
 @section('js')
@@ -147,5 +147,5 @@
     let csrf_token = "{{csrf_token()}}"
     let url = "{{route('match.status',$match->id)}}"
 </script>
-<script src="{{secure_asset('assets/js/match.js')}}"></script>
+<script src="{{asset('assets/js/match.js')}}"></script>
 @endsection

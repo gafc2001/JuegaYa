@@ -1,7 +1,7 @@
 @extends('templates.layout')
 
 @section('css')
-<link rel="stylesheet" href="{{secure_asset('assets/css/quiz.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/quiz.css')}}">
 @endsection
 @section('content')
 <main class="content">
@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <div class="input-container">
                                     <span class="input-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
+                                        <i class="fas fa-clock"></i>
                                     </span>
                                     <input type="date" class="input date" id="time-playing">
                                 </div>
@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <div class="input-container">
                                     <span class="input-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
+                                        <i class="fas fa-sort-numeric-up-alt"></i>
                                     </span>
                                     <input type="date" class="input date" id="age">
                                 </div>
@@ -79,5 +79,5 @@
     let csrf_token = "{{csrf_token()}}"
     let url = "{{route('quiz.store')}}";
 </script>
-<script src="{{secure_asset('assets/js/quiz.js')}}"></script>
+<script src="{{asset('assets/js/quiz.js')}}"></script>
 @endsection
