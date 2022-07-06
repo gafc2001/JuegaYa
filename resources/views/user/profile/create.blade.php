@@ -101,7 +101,7 @@
                 <input type="file" name="profile_picture" id="profile_picture">
             </div>
             <div class="current-picture">
-                <img src="{{route('image','default-profile.png')}}" alt="profile" id="current-img-picture" required>
+                <img src="{{route('image','defaultprofile.png')}}" alt="profile" id="current-img-picture" required>
             </div>
         </div>
         <div class="btn-container column">

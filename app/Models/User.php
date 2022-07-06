@@ -60,7 +60,7 @@ class User extends Authenticatable
         if(!is_null($this->profile()) && !is_null($this->profile()->profile_picture)){
                 return $this->profile()->profile_picture;
         }else{
-            return "default-profile.png";
+            return "defaultprofile.png";
         }
     }
     
